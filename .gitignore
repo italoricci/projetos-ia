@@ -154,3 +154,6 @@ vite.config.ts.timestamp-*
 # Editor settings
 .vscode/
 .idea/
+
+# backup of embedded .git directories
+**/.git_embedded_backup/
