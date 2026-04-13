@@ -112,20 +112,20 @@ Adote um tom técnico, didático e seguro. Como essa é uma tecnologia muito nov
 <documentos_de_fundo>
 	•	A integração utiliza as APIs experimentais do Chrome (como  window.ai  ou  window.ai.assistant ).
 	•	Como a tecnologia é nova, é fundamental que o sistema verifique a disponibilidade da API antes de tentar inicializar a sessão do modelo.
-	•	O código deve ser contido inteiramente em um único arquivo (HTML, CSS e JS juntos) para facilitar o teste local do cliente. </documentos_de_fundo>
+	•	O código deve ser contido inteiramente em um único arquivo (HTML, CSS e JS juntos) para facilitar o teste local do cliente.</documentos_de_fundo>
 <instrucoes_passo_a_passo>
 	1.	Pense silenciosamente sobre a arquitetura da interface: você precisará de um contêiner para as mensagens, um campo de texto e um botão de envio.
 	2.	Crie o HTML semântico e adicione um CSS embutido moderno, limpo e responsivo (estilo dark mode é preferível).
 	3.	Escreva o JavaScript criando uma função para verificar se a API de IA do Chrome está disponível ( window.ai ).
 	4.	Desenvolva a lógica de envio de mensagem: capture o texto do usuário, exiba na tela, chame a API do modelo de forma assíncrona, aguarde a resposta e exiba o balão de resposta da IA.
-	5.	Implemente tratamentos de erro caso a API não seja suportada pelo navegador atual (exibindo um aviso amigável na tela do chat). </instrucoes_passo_a_passo>
+	5.	Implemente tratamentos de erro caso a API não seja suportada pelo navegador atual (exibindo um aviso amigável na tela do chat).</instrucoes_passo_a_passo>
 <exemplo_de_comportamento>
 	•	O usuário abre o  index.html . O sistema verifica  if (!window.ai) .
 	•	Se falhar: O chat exibe a mensagem “Sistema: O modelo de IA nativo não está ativado ou suportado neste navegador.”
 	•	Se sucesso: O chat permite digitar. O usuário digita “Qual é a capital do Brasil?”.
 	•	O chat exibe “Você: Qual é a capital do Brasil?” e chama  await session.prompt("Qual é a capital do Brasil?") .
-	•	O chat recebe a resposta e exibe “IA: A capital do Brasil é Brasília.” </exemplo_de_comportamento>
-<formato_de_saida>Primeiro, coloque a sua explicação e raciocínio sobre a implementação dentro da tag . Em seguida, forneça o código completo e consolidado exclusivamente dentro de um bloco de código Markdown padrão, envolto pela tag <codigo_final>. Não divida o código em múltiplos blocos.</formato_de_saida>
+	•	O chat recebe a resposta e exibe “IA: A capital do Brasil é Brasília.”</exemplo_de_comportamento>
+<formato_de_saida>Primeiro, coloque a sua explicação e raciocínio sobre a implementação dentro da tag .Em seguida, forneça o código completo e consolidado exclusivamente dentro de um bloco de código Markdown padrão, envolto pela tag <codigo_final>. Não divida o código em múltiplos blocos.</formato_de_saida>
 
 tokens aproximados: 821
 
@@ -260,3 +260,17 @@ _Observação_: um JSON bem estruturado, sem repetição gera menos custo que um
 - Tools: ações que uma IA pode executar: ex: criar arquivo, executar consulta SQL;
 - Resources: dados usados como contexto, como conteudo de arquivos, logs e etc;
 - Prompts: templates e estruturas que ajudam a IA a formular comandos adequados para usar essas ferramentas;
+
+## Preocupações
+
+1. É fácil cair na ilusão que a LLM sabe tudo, entretanto os modelos não aprendem em tempo real;
+2. Ele é treinado até um certa data, e o mundo continua mudando: API's, Contratos, Bibliotecas mudam;
+3. Maior motivo de bug em vibecoding;
+
+## Context7
+
+1. Servidor mcp, focado em trazer as documentação atual e versionado direto da fonte;
+2. Injeção automática no prompt;
+3. Context7 indexa todas documentação;
+4. Prompts imensos = mais token = mais custo;
+

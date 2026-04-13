@@ -1,0 +1,102 @@
+.container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+.card {
+	background: white;
+	border-radius: 12px;
+	padding: 40px;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	max-width: 500px;
+	width: 100%;
+}
+
+.card h1 {
+	font-size: 32px;
+	margin-bottom: 16px;
+	color: #333;
+}
+
+.welcomeText {
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 16px;
+}
+
+.infoText {
+	font-size: 16px;
+	color: #666;
+	margin-bottom: 24px;
+}
+
+.userInfo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 24px;
+	gap: 16px;
+}
+
+.userInfo img {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	border: 3px solid #667eea;
+}
+
+.userName {
+	font-size: 18px;
+	font-weight: 600;
+	color: #333;
+	margin: 0;
+}
+
+.userEmail {
+	font-size: 14px;
+	color: #666;
+	margin: 4px 0 0 0;
+}
+
+.githubBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 12px 24px;
+	background: #333;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.3s ease;
+	margin-bottom: 12px;
+}
+
+.githubBtn:hover {
+	background: #1a1a1a;
+}
+
+.logoutBtn {
+	width: 100%;
+	padding: 12px 24px;
+	background: #667eea;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.3s ease;
+}
+
+.logoutBtn:hover {
+	background: #764ba2;
+}
