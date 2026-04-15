@@ -5,6 +5,7 @@
 3. Métrica: tempo média de um endpoint foi chamado
 4. Tracing: cadeia de chamadas de codigo foi chamada, quais servicos foram disparados e etc
 5. Logs: textos que imprime no seu codigo;
+6. Telemetria envia software como grafana/prometheus
 
 ### Serviços open source
 
