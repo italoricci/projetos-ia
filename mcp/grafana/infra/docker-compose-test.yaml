@@ -1,5 +1,5 @@
 include:
-  - ./docker-compos.yaml
+  - ./docker-compose-infra.yaml
 
 services:
   alumnus-test:
