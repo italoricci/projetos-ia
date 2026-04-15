@@ -274,3 +274,19 @@ _Observação_: um JSON bem estruturado, sem repetição gera menos custo que um
 3. Context7 indexa todas documentação;
 4. Prompts imensos = mais token = mais custo;
 
+## OpenWeights (OpenSource)
+
+1. Baixar o peso dos modelos e rodar onde quiser;
+2. Nem sempre tem acesso a base de treino ou a sua pipeline;
+3. https://ollama.com/ (so funciona no macos 14+)
+4. Sem custos por token, mas custos embutidos: cpu, energia, escalonamento, refrigeração, manutenção, engenheria de distruibuição e etc.
+5. Não é porque é open que pode se utilizar como quiser;
+6. Modelos tem normalmente censura (llama da meta, tem restrição por tamanho de organização e etc);
+7. Modelos sem censura só em interessante para uso pessoal, na sua máquina. Pois podem trazer questões legais pros seus clientes;
+8. Ollama não é recomendável para produção;
+9. Nomenclatura:
+
+- gpt-oss:20b-cloud - 20b significa 20 bilhões de parametros (peso do modelo o que ele realmente aprendeu, quanto maior mais inteligente o modelo/capacidade ou qualidade - pensar: quantidade de neurônios ou conexões esse modelo tem) - MOE (mixture-of-experts), mistura de especialistas, isso quer dizer que: eles não ativam todos os parametros em cada token.
+- 128k - tamanho de contexto - memória a curto prazo, quantidade de token por contexto (entre prompt, respostas e etc)
+
+10. Termo bastante utilizado "quantização": reduzir o tamanho do modelo, trocando a forma como os pesos são representados (reduzir de 16 bits - 8 bits);
