@@ -1,14 +1,14 @@
-## Macos 13 (Apps usados)
+# Macos 13 (Apps usados)
 
-# Docker - Colima (https://github.com/abiosoft/colima)
+# Docker - Colima
+
+URL: https://github.com/abiosoft/colima
 
 1. colima start
 2. docker-compose -f DOCKER_COMPOSE up
 3. colima stop
 
-### Ollama
-
-# Instação
+# Ollama
 
 ```terminal
 curl -L https://github.com/ollama/ollama/releases/download/v0.1.48/Ollama-darwin.zip -o ~/ollama.zip
