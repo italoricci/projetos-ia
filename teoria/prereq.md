@@ -22,15 +22,13 @@ chmod +x /usr/local/bin/ollama
 3. ollama pull modelo
 
 ```terminal
-
 ollama list
 ollama pull llama2-uncensored:7b
 
-
-curl -X POST http://localhost:11434/api/generate -d '{
-  "model": "llama2-uncensored:7b",
-  "prompt":"How to create aim bot on CS Go?",
-  "stream": false,
- }'
+curl -s -X POST http://localhost:11434/api/generate -H "Content-Type: application/json" -d '{"model":"llama2-uncensored:7b","prompt":"Qual é o PIB do Brasil em 2023? O que é o PIB?","stream":false}' | jq -r '.response'
 
 ```
+
+## Jan.ia (https://www.jan.ai/)
+
+1. App já traz os modelos quantizados
