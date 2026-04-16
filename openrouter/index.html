@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenRouter Chat Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .message { animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .bubble { line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+        .loading-dots::after { content: ''; animation: dots 1.5s steps(4) infinite; }
+        @keyframes dots { 0% { content: ''; } 25% { content: '.'; } 50% { content: '..'; } 75% { content: '...'; } }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen flex flex-col antialiased">
+    <header class="bg-slate-900 text-white p-6 flex items-center gap-4 sticky top-0 z-20 shadow-2xl">
+        <h1 class="text-2xl font-bold">Chat OpenRouter Pro</h1>
+        <select id="model-select" class="px-4 py-2 bg-slate-800/50 backdrop-blur-sm text-white rounded-xl text-sm font-medium border border-slate-700/50 hover:border-slate-600 focus:border-blue-400 focus:outline-none transition-all">
+            <option value="openai/gpt-oss-120b:free">GPT OSS 120B Free</option>
+            <option value="google/gemma-3-12b-it:free">Gemma 3 12B IT Free</option>
+            <!-- <option value="nvidia/llama-nemotron-embed-vl-1b-v2:free">Llama Nemotron Embed Free</option> -->
+        </select>
+    </header>
+    
+    <div id="chat-container" class="flex-1 p-8 pb-24 max-w-4xl mx-auto w-full overflow-y-auto space-y-6">
+        <!-- Mensagens aqui -->
+    </div>
+    
+    <div class="p-6 bg-white/80 backdrop-blur-md border-t border-slate-200/50 shadow-2xl flex items-end gap-4 max-w-4xl mx-auto w-full sticky bottom-0 z-10">
+        <textarea id="message-input" placeholder="Digite sua mensagem... (Enter para enviar)" 
+                  class="flex-1 p-5 rounded-3xl border-2 border-slate-200 hover:border-slate-300 focus:border-green-500 focus:outline-none transition-all shadow-lg resize-none min-h-14 max-h-64 text-lg leading-relaxed hover:shadow-xl"></textarea>
+        <button id="send-btn" class="w-16 h-16 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-3xl shadow-xl hover:shadow-2xl transition-all flex items-center justify-center text-xl font-bold shrink-0 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95" title="Enviar">➤</button>
+    </div>
+    
+    <div id="loading" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+        <div class="bg-white/95 backdrop-blur-xl p-12 rounded-3xl shadow-2xl border border-white/50 max-w-md text-center">
+            <div class="w-20 h-20 border-4 border-emerald-200 border-t-emerald-600 rounded-full mx-auto mb-6 animate-spin"></div>
+            <div class="loading-dots text-xl font-semibold text-slate-800 mb-2">Gerando resposta</div>
+            <div class="text-sm text-slate-500">Tokens chegando em tempo real...</div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = '/chat';
+        let messages = [];
+        let retryCount = 0;
+        const MAX_RETRIES = 3;
+        const container = document.getElementById('chat-container');
+        const input = document.getElementById('message-input');
+        const btn = document.getElementById('send-btn');
+        const modelSelect = document.getElementById('model-select');
+        const loadingEl = document.getElementById('loading');
+
+        input.addEventListener('input', function() {
+            this.style.height = '56px';
+            this.style.height = `${Math.min(this.scrollHeight, 256)}px`;
+        });
+
+        input.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && !e.shiftKey) e.preventDefault() || sendMessage();
+        });
+
+        btn.addEventListener('click', sendMessage);
+
+        async function sendMessage() {
+            const text = input.value.trim();
+            if (!text) return;
+            
+            messages.push({ role: 'user', content: text });
+            appendMessage(text, true);
+            input.value = '';
+            input.style.height = '56px';
+            btn.disabled = true;
+            loadingEl.classList.remove('hidden');
+            
+            await streamResponse();
+        }
+
+        async function streamResponse() {
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: modelSelect.value,
+                        messages,
+                        temperature: 0.3,
+                        stream: true
+                    })
+                });
+
+                if (res.status === 429) {
+                    if (retryCount < MAX_RETRIES) {
+                        retryCount++;
+                        const wait = Math.pow(2, retryCount) * 1000;
+                        appendMessage(`🔄 Rate Limit - Tentativa ${retryCount}/${MAX_RETRIES} em ${wait}ms`, false);
+                        await new Promise(r => setTimeout(r, wait));
+                        return streamResponse();
+                    } else {
+                        throw new Error('Rate limit excedido. Tente mais tarde.');
+                    }
+                }
+
+                if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+
+                const reader = res.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+                let aiContent = '';
+                appendMessage('', false);
+
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop() || '';
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = line.slice(6).trim();
+                            if (data === '[DONE]' || !data) continue;
+                            try {
+                                const parsed = JSON.parse(data);
+                                const delta = parsed.choices?.[0]?.delta?.content || '';
+                                if (delta) {
+                                    aiContent += delta;
+                                    updateLastAI(cleanText(aiContent));
+                                }
+                            } catch {}
+                        }
+                    }
+                }
+                messages.push({ role: 'assistant', content: aiContent });
+            } catch (error) {
+                updateLastAI(`❌ Erro: ${error.message}`);
+            } finally {
+                btn.disabled = false;
+                loadingEl.classList.add('hidden');
+                retryCount = 0;
+            }
+        }
+
+        function appendMessage(text, isUser) {
+            const div = document.createElement('div');
+            div.className = `message flex ${isUser ? 'justify-end' : 'justify-start'}`;
+            const className = isUser ? 'from-blue-500 to-blue-600 text-white' : 'bg-slate-800 text-slate-100';
+            div.innerHTML = `<div class="bubble p-6 rounded-3xl shadow-xl max-w-[70%] ${isUser ? 'bg-gradient-to-r' : 'bg-slate-800'} ${className}">${cleanText(text)}</div>`;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function updateLastAI(text) {
+            const lastBubble = container.querySelector('.message:last-child .bubble');
+            if (lastBubble) {
+                lastBubble.textContent = cleanText(text);
+                container.scrollTop = container.scrollHeight;
+            }
+        }
+
+        function cleanText(text) {
+            if (typeof text !== 'string') return '';
+            return text
+                .replace(/<[^>]*>/g, '') // HTML tags
+                .replace(/\|+/g, ' | ') // Pipes tabelas
+                .replace(/\\n|\\r/g, '\n') // Escaped
+                .replace(/\n{4,}/g, '\n\n') // Multiple newlines
+                .replace(/^\s+|\s+$/gm, '') // Trim lines
+                .trim();
+        }
+    </script>
+</body>
+</html>
