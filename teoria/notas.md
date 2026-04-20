@@ -290,3 +290,38 @@ _Observação_: um JSON bem estruturado, sem repetição gera menos custo que um
 - 128k - tamanho de contexto - memória a curto prazo, quantidade de token por contexto (entre prompt, respostas e etc)
 
 10. Termo bastante utilizado "quantização": reduzir o tamanho do modelo, trocando a forma como os pesos são representados (reduzir de 16 bits - 8 bits);
+
+## OpenRouter (Orquestrador de LLM) - Recomendação
+
+1. É uma API unificada para acessar centenas de modelos de vários provedores por um unico endpoint;
+2. Com compatbilidade da OpenAI;
+3. Fallback automático (se o modelo falhar ele tenta outro modelo);
+4. Roteamento por custo, latencia e etc;
+5. NLP - Natural Language Process (Processamento de linguagem natural);
+
+## RAG (Retrieval Augmented Generation)
+
+1. É padrão de arquitetura onde antes da LLM responder o sistema busca informações externas relevantes;
+2. Ex: banco de dados, pdf, wiki, código;
+3. Injeta esses códigos no contexto;
+4. Combinação de memórias
+
+- paramétrica: o que o modelo já "sabe" nos parâmetros
+- não-paramétrica: um índice externo pesquisável, tipicamente um índice vetorial
+
+5. RAG serve para a LLM responder com dados atualizados e privado;
+6. Assim há redução de alucinações;
+
+## Fine-Tunning
+
+1. Pega um modelo já treinado e faz um treinamento adicional nele;
+2. Usar exemplo do dominio para ajustar os pesos do modelo;
+3. Pegar um modelo de identificação de imagens e treina ele para refinar mais a classificação da imagem;
+
+- Pega um modelo que identifica uma imagem como pipa e re-treina ele para identificar como pato;
+
+## Busca por similaridade
+
+1. Transformar cada pedaço em um vetor (embedding);
+2. Texto com significado parecido viram vetores próximos;
+3. Pergunta ao banco vetorial (ex: neo4j) ele te devolve o topK (filtro aplicado para escolhe de tokens) trechos mais próximos;

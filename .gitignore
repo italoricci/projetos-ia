@@ -157,3 +157,6 @@ vite.config.ts.timestamp-*
 
 # backup of embedded .git directories
 **/.git_embedded_backup/
+
+# Neo4j Docker data
+neo4j/neo4j/
