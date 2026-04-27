@@ -160,3 +160,6 @@ vite.config.ts.timestamp-*
 
 # Neo4j Docker data
 neo4j/neo4j/
+rag/import/
+rag/answers
+rag/rag/
