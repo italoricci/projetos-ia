@@ -122,6 +122,44 @@ Exemplos de requisições HTTP para execução de **modelos locais via Ollama**.
 
 ---
 
+### `langchain/`
+
+Demo de **workflow com LangGraph** usando Fastify como servidor HTTP. Implementa um grafo de processamento de texto com roteamento condicional baseado em intenção do usuário.
+
+**Arquitetura do grafo:**
+
+| Node               | Função                                                         |
+| ------------------ | -------------------------------------------------------------- |
+| **identifyIntent** | Identifica comando ("upper" ou "lower") na mensagem do usuário |
+| **upperCase**      | Converte texto para maiúsculas                                 |
+| **lowerCase**      | Converte texto para minúsculas                                 |
+| **fallback**       | Retorna mensagem de comando desconhecido                       |
+| **chatResponse**   | Retorna resposta final ao usuário                              |
+
+**Fluxo:**
+
+1. Recebe mensagem via POST `/chat`
+2. Identifica intenção (uppercase/lowercase/unknown)
+3. Processa texto conforme comando
+4. Retorna resposta via node chatResponse
+
+**Tecnologias:** LangChain, LangGraph, Fastify, TypeScript, Zod
+
+**Comandos:**
+
+```bash
+cd langchain/aplicacao
+npm install
+npm run dev        # Servidor com watch mode (porta 3000)
+npm test           # Executa testes E2E
+npm run langraph:server  # Servidor LangGraph CLI
+```
+
+**Teste via REST Client:**
+Arquivo `request/api.http` com exemplo de requisição POST para `/chat`.
+
+---
+
 ### `openrouter/`
 
 Proxy para consumo da API unificada do **OpenRouter** com suporte a múltiplos modelos e roteamento inteligente.

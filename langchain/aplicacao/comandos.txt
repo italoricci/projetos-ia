@@ -1,0 +1,5 @@
+npm init -y // criar package.json sem interatividade
+
+npm i fastify@5.7.4 @types/node@24 @langchain/core@1.1.19 langchain@1.2.17 // dependencias necessarias para rodar langchain
+
+npx @langchain/langgraph-cli new // cria um projeto base do langchain
