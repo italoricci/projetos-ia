@@ -1,4 +1,4 @@
-e a# projetos-ia
+# projetos-ia
 
 Coleção de projetos e experimentos práticos sobre Inteligência Artificial, aprendizado de máquina e aplicações web multimodais.
 
@@ -44,17 +44,6 @@ npx @better-auth/cli migrate
 npm run dev
 ```
 
-#### `mcp/context7/`
-
-Demo de autenticação com **Next.js**, **Better Auth** e **GitHub OAuth** usando SQLite como banco de dados.
-
-- Login com GitHub OAuth
-- Sessão com Better Auth
-- Banco SQLite local (`better-auth.sqlite`)
-- Interface minimalista com Next.js 14+
-
-**Setup:** `npm install` → configurar `.env.local` → `npx @better-auth/cli migrate` → `npm run dev`
-
 #### `mcp/grafana/`
 
 Stack completa de **observabilidade e monitoramento** com Grafana, integrada ao MCP para consulta de métricas, logs, traces e alertas diretamente do IDE.
@@ -80,11 +69,10 @@ npm run docker:infra:logs    # Visualiza logs
 
 #### `mcp/playwright/`
 
-Automação de testes E2E com **Playwright**, integrada ao fluxo MCP. Contém configuração do Playwright, exemplos de testes e prompts para geração automática de testes.
+Apoio para **geração e execução de testes E2E** com **Playwright**, alinhado ao fluxo MCP.
 
-- Testes de formulários e validação de UI
-- Suporte a fallback HTML para ambientes offline
-- Prompts para geração de testes via IA
+- Geração de testes via prompts/roteiros
+- Exemplos e pipeline de execução local/CI
 
 **Comandos:** `npm test` | `npm run test:ci`
 
@@ -142,7 +130,10 @@ Exemplos de requisições HTTP para execução de **modelos locais via Ollama**.
 
 ### `langchain/`
 
-Demo de **workflow com LangGraph** usando Fastify como servidor HTTP. Implementa um grafo de processamento de texto com roteamento condicional baseado em intenção do usuário.
+Coleção de demos e workflows com **LangGraph/LangChain** e **Fastify**, incluindo roteamento condicional e agentes.
+
+- **Aplicação:** demo de grafo com roteamento baseado em intenção (`upper/lower/unknown`) via `POST /chat` (abaixo em `langchain/aplicacao`).
+- **Recomendação/Agendamento:** agentic workflow para **agendar e cancelar consultas médicas** com **LangGraph** (`langchain/registro-medico`).
 
 **Arquitetura do grafo:**
 
@@ -163,7 +154,7 @@ Demo de **workflow com LangGraph** usando Fastify como servidor HTTP. Implementa
 
 **Tecnologias:** LangChain, LangGraph, Fastify, TypeScript, Zod
 
-**Comandos:**
+**Comandos (langchain/aplicacao):**
 
 ```bash
 cd langchain/aplicacao
@@ -175,6 +166,26 @@ npm run langraph:server  # Servidor LangGraph CLI
 
 **Teste via REST Client:**
 Arquivo `request/api.http` com exemplo de requisição POST para `/chat`.
+
+---
+
+#### `langchain/registro-medico/`
+
+Agentic workflow de **agendamento/cancelamento** com **LangGraph**.
+
+- Endpoint: `POST /chat`
+- Detecta intenção (`schedule` | `cancel` | `unknown`)
+- Executa a ação e gera resposta final para o paciente
+
+**Como rodar:**
+
+```bash
+cd langchain/registro-medico
+npm install
+npm run dev
+# ou
+npm start
+```
 
 ---
 
