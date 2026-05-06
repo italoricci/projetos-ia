@@ -1,4 +1,4 @@
-# projetos-ia
+e a# projetos-ia
 
 Coleção de projetos e experimentos práticos sobre Inteligência Artificial, aprendizado de máquina e aplicações web multimodais.
 
@@ -25,6 +25,24 @@ Material teórico e anotações próprias sobre IA — conceitos, referências, 
 ### `mcp/`
 
 Projetos relacionados ao **Model Context Protocol (MCP)**, padrão da Anthropic para integrar assistentes de IA com fontes de dados externas.
+
+#### `mcp/context7/`
+
+Demo simples de **autenticação** com **Next.js**, **Better Auth** e **GitHub OAuth** usando SQLite como banco de dados.
+
+- Login com GitHub OAuth
+- Sessão com Better Auth
+- Banco SQLite local (`better-auth.sqlite`, criado após `migrate`)
+- UI minimalista
+
+**Setup:**
+
+```bash
+npm install
+# configure .env.local com GITHUB_CLIENT_ID e GITHUB_CLIENT_SECRET
+npx @better-auth/cli migrate
+npm run dev
+```
 
 #### `mcp/context7/`
 
