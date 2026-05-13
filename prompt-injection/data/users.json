@@ -1,0 +1,14 @@
+{
+  "italo": {
+    "username": "italo",
+    "role": "admin",
+    "permissions": ["read_package", "execute_commands"],
+    "displayName": "Italo"
+  },
+  "paula": {
+    "username": "paula",
+    "role": "member",
+    "permissions": [],
+    "displayName": "Paula"
+  }
+}
