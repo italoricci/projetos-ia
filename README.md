@@ -8,34 +8,52 @@ Este repositório reúne materiais, demos e infraestruturas usadas em aulas, liv
 
 ---
 
-## 📚 Conteúdo
+## 📚 Conteúdo (preview por subdiretório)
+
+Abaixo, cada subdiretório tem um resumo no mesmo padrão:
+
+- **Visão rápida**
+- **Tecnologias**
+- **Como rodar**
+
+---
 
 ### `teoria/`
 
-Material teórico e anotações próprias sobre IA — conceitos, referências, anotações de aulas e resumos. Abrange fundamentos de ML, redes neurais, LLMs, RAG, embeddings, engenharia de prompt, fine-tuning, algoritmos genéticos, aprendizado por reforço e execução local de modelos (Ollama, OpenWeights).
+**Visão rápida**: material teórico e anotações próprias sobre IA, ML e aplicações práticas.
 
-**Arquivos principais:**
+**Tecnologias**: não se aplica (conteúdo)
 
-- `notas.md` — Resumo didático de IA, ML, DL, RNAs, LLMs, engenharia de prompt, RAG, fine-tuning e mais.
-- `prereq.md` — Pré-requisitos e referências de estudo.
-- `leitura_autoral.pdf` / `links_apoio.pdf` — Materiais de apoio.
+**Como rodar**: não se aplica
+
+**Arquivos principais**
+
+- `notas.md`
+- `prereq.md`
+- `leitura_autoral.pdf` / `links_apoio.pdf`
 
 ---
 
 ### `mcp/`
 
-Projetos relacionados ao **Model Context Protocol (MCP)**, padrão da Anthropic para integrar assistentes de IA com fontes de dados externas.
+**Visão rápida**: projetos relacionados ao **Model Context Protocol (MCP)** para integrar assistentes com fontes externas.
+
+**Tecnologias**: MCP (conceito) + stack varia por subprojeto
+
+**Como rodar**: depende do subprojeto
 
 #### `mcp/context7/`
 
-Demo simples de **autenticação** com **Next.js**, **Better Auth** e **GitHub OAuth** usando SQLite como banco de dados.
+**Visão rápida**: autenticação com **Next.js**, **Better Auth** e **GitHub OAuth** com persistência em **SQLite**.
 
-- Login com GitHub OAuth
-- Sessão com Better Auth
-- Banco SQLite local (`better-auth.sqlite`, criado após `migrate`)
-- UI minimalista
+**Tecnologias**
 
-**Setup:**
+- Next.js
+- Better Auth
+- GitHub OAuth
+- SQLite
+
+**Como rodar**
 
 ```bash
 npm install
@@ -46,138 +64,132 @@ npm run dev
 
 #### `mcp/grafana/`
 
-Stack completa de **observabilidade e monitoramento** com Grafana, integrada ao MCP para consulta de métricas, logs, traces e alertas diretamente do IDE.
+**Visão rápida**: stack completa de observabilidade (métricas, logs, traces e alertas) integrada ao fluxo MCP.
 
-**Componentes:**
-| Serviço | Função |
-|---------|--------|
-| **Grafana** | Visualização unificada (métricas, logs, traces) |
-| **Prometheus** | Coleta e armazenamento de métricas |
-| **Tempo** | Rastreamento distribuído (distributed tracing) |
-| **Loki** | Agregação e consulta de logs |
-| **OpenTelemetry Collector** | Hub central de telemetria (recebe OTLP, distribui para backends) |
-| **Blackbox Exporter** | Monitoramento externo de endpoints HTTP/TCP/ICMP |
-| **\_alumnus/** | Aplicação demo Fastify + PostgreSQL instrumentada com OpenTelemetry |
+**Tecnologias**
 
-**Comandos principais:**
+- OpenTelemetry Collector
+- Grafana, Prometheus, Tempo, Loki
+- Blackbox Exporter
+- Demo application instrumentada (`_alumnus/`)
+
+**Como rodar**
 
 ```bash
-npm run docker:infra:up      # Sobe infraestrutura
-npm run docker:infra:down    # Para infraestrutura
-npm run docker:infra:logs    # Visualiza logs
+npm run docker:infra:up      # Sobe a infraestrutura
+npm run docker:infra:logs    # Logs
+npm run docker:infra:down    # Para
 ```
-
-#### `mcp/playwright/`
-
-Apoio para **geração e execução de testes E2E** com **Playwright**, alinhado ao fluxo MCP.
-
-- Geração de testes via prompts/roteiros
-- Exemplos e pipeline de execução local/CI
-
-**Comandos:** `npm test` | `npm run test:ci`
 
 ---
 
 ### `neo4j/`
 
-Sistema de **embeddings e busca por similaridade** usando **Neo4j Vector Store** com modelos da Hugging Face.
+**Visão rápida**: embeddings e busca por similaridade usando **Neo4j Vector Store** + modelos da **Hugging Face**.
 
-- Processamento de PDFs (`tensores.pdf`)
-- Geração de embeddings com `HuggingFaceTransformersEmbeddings`
-- Armazenamento vetorial no Neo4j
-- Busca por similaridade semântica
-- Node.js 22+ com suporte a TypeScript nativo (`--experimental-strip-types`)
+**Tecnologias**
 
-**Comandos:**
+- Neo4j
+- Hugging Face Transformers (embeddings)
+- Node.js 22+
+
+**Como rodar**
 
 ```bash
-npm run infra:up    # Sobe Neo4j via Docker Compose
-npm start           # Executa pipeline de embeddings + busca
+npm run infra:up    # Docker Compose (Neo4j)
+npm start           # Pipeline embeddings + busca
 ```
 
 ---
 
 ### `rag/`
 
-Implementação completa de **RAG (Retrieval Augmented Generation)** combinando Neo4j Vector Store, LangChain e OpenRouter.
+**Visão rápida**: implementação de **RAG** com Neo4j Vector Store + LangChain + OpenRouter.
 
-- Processamento de documentos PDF
-- Geração de embeddings com Hugging Face
-- Armazenamento vetorial no Neo4j
-- Geração de respostas com LLM via OpenRouter
-- Salvamento automático das respostas em arquivos Markdown
+**Tecnologias**
 
-**Tecnologias:** LangChain, Neo4j, Hugging Face Transformers, OpenRouter
+- LangChain
+- Neo4j
+- Hugging Face Transformers
+- OpenRouter
 
-**Comandos:**
+**Como rodar**
 
 ```bash
-npm run infra:up    # Sobe Neo4j via docker compose
-npm start           # Executa pipeline RAG completo
+npm run infra:up
+npm start
 ```
 
 ---
 
 ### `ollama/`
 
-Exemplos de requisições HTTP para execução de **modelos locais via Ollama**.
+**Visão rápida**: exemplos de requisições HTTP para execução local de modelos via **Ollama**.
 
-- Arquivo `.http` para testes com extensão REST Client (VSCode)
-- Exemplos com modelos `llama2-uncensored:7b` e `tinyllama`
-- Execução 100% local sem custos por token
+**Tecnologias**
+
+- Ollama (runtime local)
+- Arquivos `.http` (REST Client no VSCode)
+
+**Como rodar**
+
+- Use o(s) arquivo(s) `.http` do diretório (ajuste modelo/endpoint conforme necessário)
+
+---
+
+### `prompt-injection/`
+
+**Visão rápida**: demo educacional de **prompt injection** e **defesas com guardrails baseados em LLM**, com **controle de acesso por papel** (admin vs member).
+
+**Tecnologias**
+
+- Node.js, TypeScript
+- LangGraph (graph + roteamento)
+- OpenRouter (LLM principal + modelo “safeguard”)
+
+**Como rodar**
+
+```bash
+npm install
+cp .env.example .env
+# preencha OPENROUTER_API_KEY
+
+# Modo seguro (guardrails ativados)
+npm run chat -- --user ananeri
+
+# Modo não seguro (vulnerável)
+npm run chat -- --user ananeri --unsafe
+
+# Admin (sempre funciona)
+npm run chat -- --user erickwendel
+```
 
 ---
 
 ### `langchain/`
 
-Coleção de demos e workflows com **LangGraph/LangChain** e **Fastify**, incluindo roteamento condicional e agentes.
+**Visão rápida**: demos/worflows com **LangGraph/LangChain** (e Fastify quando aplicável).
 
-- **Aplicação:** demo de grafo com roteamento baseado em intenção (`upper/lower/unknown`) via `POST /chat` (abaixo em `langchain/aplicacao`).
-- **Recomendação/Agendamento:** agentic workflow para **agendar e cancelar consultas médicas** com **LangGraph** (`langchain/registro-medico`).
+**Tecnologias**
 
-**Arquitetura do grafo:**
+- LangGraph / LangChain
+- TypeScript
+- Zod
+- OpenRouter (nos exemplos que usam LLM)
 
-| Node               | Função                                                         |
-| ------------------ | -------------------------------------------------------------- |
-| **identifyIntent** | Identifica comando ("upper" ou "lower") na mensagem do usuário |
-| **upperCase**      | Converte texto para maiúsculas                                 |
-| **lowerCase**      | Converte texto para minúsculas                                 |
-| **fallback**       | Retorna mensagem de comando desconhecido                       |
-| **chatResponse**   | Retorna resposta final ao usuário                              |
-
-**Fluxo:**
-
-1. Recebe mensagem via POST `/chat`
-2. Identifica intenção (uppercase/lowercase/unknown)
-3. Processa texto conforme comando
-4. Retorna resposta via node chatResponse
-
-**Tecnologias:** LangChain, LangGraph, Fastify, TypeScript, Zod
-
-**Comandos (langchain/aplicacao):**
-
-```bash
-cd langchain/aplicacao
-npm install
-npm run dev        # Servidor com watch mode (porta 3000)
-npm test           # Executa testes E2E
-npm run langraph:server  # Servidor LangGraph CLI
-```
-
-**Teste via REST Client:**
-Arquivo `request/api.http` com exemplo de requisição POST para `/chat`.
-
----
+**Como rodar**: depende do subprojeto
 
 #### `langchain/registro-medico/`
 
-Agentic workflow de **agendamento/cancelamento** com **LangGraph**.
+**Visão rápida**: agentic workflow para **agendamento/cancelamento** com **LangGraph**.
 
-- Endpoint: `POST /chat`
-- Detecta intenção (`schedule` | `cancel` | `unknown`)
-- Executa a ação e gera resposta final para o paciente
+**Tecnologias**
 
-**Como rodar:**
+- LangGraph
+- Fastify (API)
+- OpenRouter + LangSmith (tracing, conforme README do projeto)
+
+**Como rodar**
 
 ```bash
 cd langchain/registro-medico
@@ -187,111 +199,102 @@ npm run dev
 npm start
 ```
 
+#### `langchain/recomendacao-musica/` (nota: no repo aparece como `recomendacao-musica/`)
+
+**Visão rápida**: recomendador com **memória persistida** no LangGraph (multi-turn + isolamento por thread + preferências persistidas).
+
+**Tecnologias**
+
+- LangGraph
+- OpenRouter
+- PostgreSQL (checkpointer/store)
+- SQLite (preferências) — conforme o README do projeto
+
+**Como rodar**
+
+```bash
+npm install
+# defina OPENROUTER_API_KEY no .env
+npm run docker:up   # se necessário para PostgreSQL
+npm run chat:italo
+```
+
 ---
 
 ### `openrouter/`
 
-Proxy para consumo da API unificada do **OpenRouter** com suporte a múltiplos modelos e roteamento inteligente.
+**Visão rápida**: consumo da API OpenRouter e variações de gateway/roteamento inteligente.
 
-#### `openrouter/aplicacao/smart-model-router-gateway/`
+**Tecnologias**
 
-Gateway **Fastify** para roteamento inteligente entre modelos do OpenRouter.
+- OpenRouter SDK
+- Fastify/Express (conforme o subprojeto)
 
-- Proxy para `/api/v1/chat/completions` com streaming de respostas
-- Roteamento por custo, latência ou throughput
-- Fallback automático entre modelos
-- Suporte a CORS e live-reload
-- Interface HTML simples para testes
+**Como rodar**
 
-** tecnologias:** Fastify, @openrouter/sdk, TypeScript
-
-**Comandos:**
-
-```bash
-cd openrouter/aplicacao/smart-model-router-gateway
-npm install
-npm run dev    # Desenvolvimento com watch
-npm test       # Executa testes
-```
-
-Servidor na porta 3000.
-
----
-
-#### `openrouter/conceitos/`
-
-Exemplos introdutórios de consumo da API OpenRouter.
-
-- Servidor Express.js simples
-  -Requisições HTTP diretas com curl/shell
-- Interface HTML para testes básicos
+- depende do subdiretório
 
 ---
 
 ### `tensorflow/`
 
-Projetos e experimentos com **TensorFlow.js** para aprendizado de máquina no browser e Node.js.
+**Visão rápida**: experimentos com **TensorFlow.js** (browser e Node.js), incluindo detecção e recomendações.
 
-#### `tensorflow/base/`
+**Tecnologias**
 
-Base minimalista para redes neurais com TensorFlow.js no Node.js.
+- TensorFlow.js
+- (por projeto) YOLOv5/web workers e/ou lógica MVC/recomendação
 
-- Dependência: `@tensorflow/tfjs-node`
-- Watch mode nativo do Node.js
+**Como rodar**: depende do subprojeto
 
 #### `tensorflow/duck-hunt/`
 
-Jogo **Duck Hunt** com detecção de patos em tempo real usando **YOLOv5** e TensorFlow.js.
+**Visão rápida**: Duck Hunt com detecção de patos via YOLOv5 (WebGL + pipeline web).
 
-- Modelo YOLOv5n otimizado para web (`yolov5n_web_model/`)
-- Detecção de objetos no browser via WebGL
-- Pipeline completo: bundling com Gulp/Webpack, assets, infraestrutura Terraform
-- Arquitetura com web workers para inferência não-bloqueante
+**Tecnologias**
+
+- TensorFlow.js
+- YOLOv5 (modelo otimizado para web)
+
+**Como rodar**
+
+- use o README local do diretório (instruções específicas)
 
 #### `tensorflow/ecommerce-recomendation/`
 
-Sistema de **recomendação para e-commerce** com TensorFlow.js.
+**Visão rápida**: app web que faz acompanhamento de compras (sessionStorage) e prepara base para recomendações com TF.js.
 
-- Perfis de usuários e catálogo de produtos
-- Histórico de compras com `sessionStorage`
-- Estrutura MVC (Model-View-Controller)
-- WIP: motor de recomendação com embeddings e banco vetorial (Chroma/LanceDB)
+**Tecnologias**
+
+- TensorFlow.js
+- JavaScript (front-end MVC)
+
+**Como rodar**
+
+```bash
+npm install
+npm start
+# abra http://localhost:8080
+```
 
 ---
 
 ### `web2.0/`
 
-Demos web que utilizam **modelos de IA embarcados no browser** via APIs experimentais do Chrome e integrações client-side.
+**Visão rápida**: demos web com IA executada/assistida no browser (Chrome Built-in AI e variações multimodais).
 
-#### `web2.0/webai/`
+**Tecnologias**
 
-Chat interativo usando a **API nativa de IA do Google Chrome** (Gemini Nano / Built-in AI).
+- APIs experimentais do Chrome
+- UI client-side
 
-- Execução 100% offline no dispositivo do cliente
-- Interface em dark mode com suporte a Markdown
-- Streaming de respostas token a token
-- Verificação de disponibilidade da API antes da inicialização
+**Como rodar**
 
-#### `web2.0/webai-multimodal/`
-
-Demo **multimodal** (texto + imagem/áudio) com controle de parâmetros (temperature, topK).
-
-- Upload de arquivos (imagem/áudio)
-- Parâmetros ajustáveis de geração
-- Arquitetura modular: controllers, services, views
-- Serviço de tradução integrado
-
-#### `web2.0/webai2.0/`
-
-Versão simplificada da demo WebAI com interface limpa e parâmetros configuráveis.
-
-- Temperature e TopK ajustáveis via UI
-- Respostas em streaming
-- Design responsivo e acessível
+- depende do subdiretório (`webai`, `webai-multimodal`, `webai2.0`)
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas (visão geral do repo)
 
 | Categoria           | Tecnologias                                                        |
 | ------------------- | ------------------------------------------------------------------ |
