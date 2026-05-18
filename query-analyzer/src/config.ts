@@ -2,7 +2,10 @@ export const config = {
   apiKey: process.env.OPENROUTER_API_KEY!,
   httpReferer: '',
   xTitle: 'IA Devs - Query Analyzer',
-  models: ['nvidia/nemotron-3-super-120b-a12b:free', 'openai/gpt-oss-20b:free'],
+  models: [
+    'nvidia/nemotron-3-super-120b-a12b:free',
+    // 'openai/gpt-oss-20b:free'
+  ],
   provider: {
     sort: {
       by: 'throughput', // Route to model with highest throughput (fastest response)

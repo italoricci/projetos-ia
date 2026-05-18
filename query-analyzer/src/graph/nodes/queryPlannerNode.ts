@@ -27,7 +27,13 @@ export function createQueryPlannerNode(llmClient: OpenRouterService) {
       }
 
       if (data?.requiresDecomposition && !!data.subQuestions?.length) {
-        console.log('🔍 Query requires decomposition into sub-questions.');
+        const subQuestionsFormatted = data.subQuestions
+          .map((q: string, i: number) => `\n   ${i + 1}. ${q}`)
+          .join('');
+
+        console.log(
+          `📊 Complex query - ${data.subQuestions.length} steps:${subQuestionsFormatted}`,
+        );
         return {
           isMultiStep: true,
           subQuestions: data.subQuestions,
