@@ -18,7 +18,7 @@ app
     payload: {
       //   question: 'Quais cursos são geralmente comprados juntos?',
       question:
-        "Encontre os cursos que os alunos geralmente compram após 'Machine Learning em Navegadores'",
+        "Quais cursos têm pelo menos 20% de seus compradores também adquirindo 'Machine Learning em Navegadores' em compras anteriores",
       //   question: 'Mostre a distribuição de receita entre todos os cursos',
       //   question: 'Quais usuários progrediram mais de 80%?',
       //   question: 'Quais cursos tiveram mais reembolsos?'
