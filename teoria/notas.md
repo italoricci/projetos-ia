@@ -252,14 +252,19 @@ _Observação_: um JSON bem estruturado, sem repetição gera menos custo que um
 
 ## MCP
 
-1. Model Context Protocol, lançado pela Anthropic
-2. Objetivo: integrar assistentes de IA com fontes de dados externas (API, arquivos, banco de dados ou qualquer fontes de dados ou serviço);
+1. Model Context Protocol, lançado pela Anthropic;
+2. Objetivo: integrar assistentes de IA com fontes de dados externas (API, arquivos, banco de dados ou qualquer fontes de dados ou serviço e ate realizar tarefas de forma autonomas);
 3. Analogo a uma USB-C para app de IA, um padrão para plugar periféricos;
 4. Um servidor MCP expoe 3 pontos importantes:
 
-- Tools: ações que uma IA pode executar: ex: criar arquivo, executar consulta SQL;
+- Tools: ações que uma IA pode executar (capacidade exposta do modelo): ex: criar arquivo, executar consulta SQL;
 - Resources: dados usados como contexto, como conteudo de arquivos, logs e etc;
 - Prompts: templates e estruturas que ajudam a IA a formular comandos adequados para usar essas ferramentas;
+
+## Function Calling
+
+1- Lancando pela OpenAI, semelhante ao MCP;
+2- Nao dava autonomia para a LLM escolher o que executar, colher todo o contexto;
 
 ## Preocupações
 

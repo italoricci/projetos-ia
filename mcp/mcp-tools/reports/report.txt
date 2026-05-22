@@ -1,0 +1,1 @@
+Total revenue calculated from sales-medium.csv: $340.67
