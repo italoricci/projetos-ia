@@ -346,6 +346,11 @@ Você é um assistente de suporte ao cliente, responda apenas sobre nossos produ
 1. Modelos que suportam diversos formatos - recebem e respondem (texto, imagem, audio e video);
 2. Modelos real-time (stream aberto que responde em tempo real);
 
+## Vibecoding
+
+1. Sempre que for expor algum site publico, utilizar o llms.txt (https://llmstxt.org/)
+2. llms.txt fornecer uma lista selecionada de conteudo mais importante, ao inves de deixar rastreadores de IA percorram seu site;
+
 ## LINKS de apoio
 
 1. https://www.skills.sh/
