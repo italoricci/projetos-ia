@@ -350,9 +350,24 @@ Você é um assistente de suporte ao cliente, responda apenas sobre nossos produ
 
 1. Sempre que for expor algum site publico, utilizar o llms.txt (https://llmstxt.org/)
 2. llms.txt fornecer uma lista selecionada de conteudo mais importante, ao inves de deixar rastreadores de IA percorram seu site;
+3. Sempre importante definir o instructions ou rules, para definir cada camada do projeto para dar contexto para IA. Deve ser no maximo de 100 linhas;
+4. Criar agentes customizados para cada desenvolvimento;
+5. Padrao para fragmentar (SKILLS) prompts em prompts menores especializados;
+6. SKILLS - agentes granulares para acessar tools de mcp e etc.
+
+```xml
+Exemplo de agentes do copilot
+
+.github
+  > agents
+    developer.agent.md
+
+
+
+```
 
 ## LINKS de apoio
 
-1. https://www.skills.sh/
+1. https://www.skills.sh/ (by vercel)
 2. https://openrouter.ai/
 3. https://smith.langchain.com/
