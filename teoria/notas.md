@@ -42,7 +42,7 @@ Entrada → ∑(peso * entrada + bias) → Função Ativação → Saída
 - **Peso (w)**: Força da conexão.
 - **Bias (b)**: Ajuste de threshold.
 - **Funções de Ativação**:
-  
+
   | Função  | Descrição                                     |
   | ------- | --------------------------------------------- |
   | ReLU    | max(0, x) - Rápida, evita vanishing gradient. |
@@ -74,10 +74,13 @@ Entrada → ∑(peso * entrada + bias) → Função Ativação → Saída
 1. LLM - Large Language Model: é um modelo treinado com grande quantidade de texto, para entender e gerar linguagem humana;
 2. Chatgpt, Gemini e etc: são chatbots de llm.
 3. Conceitos de GPT (Generative Pre Trained Transformer)
+
 - Generative (gerador): gera texto token por token
 - Pre Trained: antes de virar assistente ele é treinando com uma quantidade enorme para aprender padrões gerais de linguagem
 - Transformer: é arquitetura usada por dentro, famosa por conseguir "prestar atenção" em partes importantes do texto - attention
+
 4. Como a LLM pensa?
+
 - Tokenização: pedaços de palavras, isso porque o modelo não trabalha diretamente com palavras como humanos, mas como unidades númericas; Tokens (são unidades menores que palavras, são normalmente limitadores);
 - Embeddings: representam palavras como vetores (númericos), e a posição desses vetores é moldada pelo contexto semântico: palavras que aparecem em contexto parecidos, ficam próximas;
 - Transformer (processo o contexto): analise o token do contexto e calcula as partes mais importante para prever o proximo token. (Arquitetura de rede neural) feita para processar sequenciais de texto, usando um mecanismo de attention, para determinar quais partes do texto sao mais importantes. É o cerebro da LLM. Paralelo (multi-head attention) -> define pesos e comparações. De forma geral: pega os vetores (embeddings) e criam versões contextualizadas deles
@@ -87,12 +90,14 @@ Texto -> Tokens -> Vetores (embeddings) -> Transformer (attention, combina o emb
 ```
 
 - AI Multimodal
+
 1. Pode receber vários formatos (texto, audio, imagem);
 
 ### Engenharia de Prompt
 
 1. Você necessariamente precisa refinar o que você quer: detalhar ao máximo;
 2. Template de um prompt modelo (vídeo da antropic):
+
 - Contexto da tarefa: qual papel a IA deve assumir: Ex: Você é um programador
 - Contexto de tom: Postura da linguagem da resposta (profissional, acessível)
 - Dados de antecedentes, documentos e imagens (git, contexto do sistema)
@@ -126,6 +131,7 @@ tokens aproximados: 821
 ```
 
 3. JSON Prompt: economiza prompt no final (previsibilidade e automação);
+
 - meta: nome/versao do prompt, idioma e objetivo;
 - role: papel
 - context: dados que o modelo precisa saber
@@ -218,11 +224,13 @@ _Observação_: um JSON bem estruturado, sem repetição gera menos custo que um
 ## Ambiente de Execução de IA
 
 1. VSCode: base de tudo, ecossistema (há possibilidade de criar agents customizáveis - subprompts)
+
 - 3 Agentes nativos:
   - Ask: perguntas rápidas, tirar dúvidas, explicar o código
   - Edit: mudanças controladas, seguir guias
   - Plan: reduzir caos em tarefas grandes, cria um plano e necessita de aprovação
   - Agent: modo autonomo, ele que executa
+
 2. Cursor: fork do VSCode, AI first
 3. Windsurf: fork do VSCode, AI first, concorrente do Cursor, concorrente do CODIUM, do copilot.
 
@@ -230,6 +238,7 @@ _Observação_: um JSON bem estruturado, sem repetição gera menos custo que um
 
 1. Define uma especificação clara com critérios de aceite;
 2. Pra dev:
+
 - contexto: onde isso roda, stack, constraint
 - requisitos: o que deve existir;
 - não requisitos: o que não faz parte;
@@ -243,9 +252,28 @@ _Observação_: um JSON bem estruturado, sem repetição gera menos custo que um
 2. Objetivo: integrar assistentes de IA com fontes de dados externas (API, arquivos, banco de dados ou qualquer fontes de dados ou serviço e ate realizar tarefas de forma autonomas);
 3. Analogo a uma USB-C para app de IA, um padrão para plugar periféricos;
 4. Um servidor MCP expoe 3 pontos importantes:
+
 - Tools: ações que uma IA pode executar (capacidade exposta do modelo): ex: criar arquivo, executar consulta SQL;
 - Resources: dados usados como contexto, como conteudo de arquivos, logs e etc;
 - Prompts: templates e estruturas que ajudam a IA a formular comandos adequados para usar essas ferramentas;
+
+5. Ao criar teu mcp, para rodar no contexto local, basta criar uma pasta .vscode e registar ele conforme exemplo abaixo:
+
+```json
+
+.vscode
+  mcp.json
+
+  {
+  "servers": {
+    "ciphersuite-mcp": {
+      "command": "node",
+      "args": ["--experimental-strip-types", "src/index.ts"]
+    }
+  }
+}
+
+```
 
 ## Function Calling
 
@@ -284,9 +312,11 @@ _Observação_: um JSON bem estruturado, sem repetição gera menos custo que um
 8. Ollama não é recomendável para produção;
 
 9. Nomenclatura:
+
 - gpt-oss:20b-cloud - 20b significa 20 bilhões de parametros (peso do modelo o que ele realmente aprendeu, quanto maior mais inteligente o modelo/capacidade ou qualidade - pensar: quantidade de neurônios ou conexões esse modelo tem) - MOE (mixture-of-experts), mistura de especialistas, isso quer dizer que: eles não ativam todos os parametros em cada token.
 
 - 128k - tamanho de contexto - memória a curto prazo, quantidade de token por contexto (entre prompt, respostas e etc)
+
 10. Termo bastante utilizado "quantização": reduzir o tamanho do modelo, trocando a forma como os pesos são representados (reduzir de 16 bits - 8 bits);
 
 ## OpenRouter (Orquestrador de LLM) - Recomendação
@@ -303,8 +333,10 @@ _Observação_: um JSON bem estruturado, sem repetição gera menos custo que um
 2. Ex: banco de dados, pdf, wiki, código;
 3. Injeta esses códigos no contexto;
 4. Combinação de memórias
+
 - paramétrica: o que o modelo já "sabe" nos parâmetros
 - não-paramétrica: um índice externo pesquisável, tipicamente um índice vetorial
+
 5. RAG serve para a LLM responder com dados atualizados e privado;
 6. Assim há redução de alucinações;
 
@@ -315,6 +347,7 @@ _Observação_: um JSON bem estruturado, sem repetição gera menos custo que um
 2. Usar exemplo do dominio para ajustar os pesos do modelo;
 
 3. Pegar um modelo de identificação de imagens e treina ele para refinar mais a classificação da imagem;
+
 - Pega um modelo que identifica uma imagem como pipa e re-treina ele para identificar como pato;
 
 ## Busca por similaridade
