@@ -141,23 +141,21 @@ src/
   service.ts                # Encryption and decryption business logic
 
   shared/
-    content.ts              # Shared MCP text content helpers
-    errors.ts               # Shared tool error handling
-    schemas.ts              # Shared zod schemas
+    utility.tss             # Shared Helpers, error handling and schemas
 
   tools/
-    encrypt-message.tool.ts
-    decrypt-message.tool.ts
+    encrypt.tool.ts
+    decrypt.tool.ts
     index.ts                # Registers all tools
 
   resources/
-    encryption-info.resource.ts
-    decryption-info.resource.ts
+    encrypt.resource.ts
+    decrypt.resource.ts
     index.ts                # Registers all resources
 
   prompts/
-    encrypt-message.prompt.ts
-    decrypt-message.prompt.ts
+    encrypt.prompt.ts
+    decrypt.prompt.ts
     index.ts                # Registers all prompts
 
 tests/
