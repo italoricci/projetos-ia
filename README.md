@@ -153,15 +153,6 @@ npm start
 npm install
 cp .env.example .env
 # preencha OPENROUTER_API_KEY
-
-# Modo seguro (guardrails ativados)
-npm run chat -- --user ananeri
-
-# Modo não seguro (vulnerável)
-npm run chat -- --user ananeri --unsafe
-
-# Admin (sempre funciona)
-npm run chat -- --user erickwendel
 ```
 
 ---
@@ -306,17 +297,7 @@ npm start
 | **Testes**          | Playwright                                                         |
 | **Infraestrutura**  | Docker, Docker Compose, Terraform                                  |
 | **APIs de IA**      | OpenRouter, Ollama, Gemini Nano (Chrome Built-in AI)               |
-| **Ferramentas**     | GitHub OAuth, Better Auth, CORS, Live Reload                       |
-
----
-
-## 🚀 Como Usar
-
-Cada subdiretório possui seu próprio `README.md` ou `package.json` com instruções específicas. Em geral:
-
-1. Navegue até o projeto de interesse
-2. Instale as dependências: `npm install`
-3. Siga as instruções do README local
+| **Ferramentas**     | GitHub OAuth, Better Auth, CORS, Live 
 
 ---
 
