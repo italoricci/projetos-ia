@@ -8,7 +8,7 @@ const BASE_URL = 'http://localhost:9999/v1';
 const service = CustomerService.create(BASE_URL);
 
 export const server = new McpServer({
-  name: '@iagenerator/ew-customers-mcp',
+  name: 'customers-mcp',
   version: '0.0.1',
 });
 
