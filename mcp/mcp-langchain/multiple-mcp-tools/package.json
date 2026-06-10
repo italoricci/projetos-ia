@@ -18,7 +18,7 @@
     "prompt-chaining",
     "openrouter"
   ],
-  "author": "erickwendel",
+  "author": "iagenerator",
   "license": "MIT",
   "dependencies": {
     "@langchain/core": "^1.1.19",
