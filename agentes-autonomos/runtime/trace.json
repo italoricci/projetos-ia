@@ -1,0 +1,1389 @@
+{
+  "trace_id": "6747d310bb69",
+  "tipo_agente": "task_based",
+  "entrada": "alerta de pagamento de latencia no servico de rastreio",
+  "evento": null,
+  "tempo_total_segundos": 66.77,
+  "tokens_consumidos": {
+    "prompt": 4171,
+    "completion": 2661,
+    "total": 6832
+  },
+  "etapas": [
+    {
+      "etapa": 1,
+      "percepcao": "Alerta: alerta de pagamento de latencia no servico de rastreio\nModo: task_based\nEtapas realizadas: 1/10\nChamadas de ferramenta: 0/9",
+      "plano": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "consultar_metricas",
+        "argumentos_ferramenta": {
+          "nome_servico": "nome_servico_sem_api_key",
+          "janela_tempo_minutos": 406
+        },
+        "criterio_sucesso": "consultar_metricas executado com sucesso"
+      },
+      "resultado_acao": {
+        "sucesso": true,
+        "dados": {
+          "latencia_p99_ms": 842.5,
+          "vazao_rps": 9,
+          "taxa_erro": 0.22,
+          "status": "degradado",
+          "_entrada": {
+            "nome_servico": "nome_servico_sem_api_key",
+            "janela_tempo_minutos": 406
+          }
+        }
+      },
+      "avaliacao": {
+        "objetivo_alcancado": false,
+        "motivo": "etapa ok - criterio: consultar_metricas executado com sucesso",
+        "qualidade": "completa",
+        "problemas_saida": []
+      }
+    },
+    {
+      "etapa": 2,
+      "percepcao": "Alerta: alerta de pagamento de latencia no servico de rastreio\nModo: task_based\nEtapa 1 [consultar_metricas]: {\"sucesso\": true, \"dados\": {\"latencia_p99_ms\": 842.5, \"vazao_rps\": 9, \"taxa_erro\": 0.22, \"status\": \"degradado\", \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_minutos\": 406}}}\nFerramentas ja utilizadas: consultar_metricas\nEtapas realizadas: 2/10\nChamadas de ferramenta: 1/9",
+      "plano": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "buscar_logs",
+        "argumentos_ferramenta": {
+          "nome_servico": "nome_servico_sem_api_key",
+          "janela_tempo_minutos": 211,
+          "nivel_minimo": "nivel_minimo_sem_api_key"
+        },
+        "criterio_sucesso": "buscar_logs executado com sucesso"
+      },
+      "resultado_acao": {
+        "sucesso": true,
+        "dados": {
+          "eventos": [
+            {
+              "timestamp": "2025-08-27T08:09:00Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "INFO",
+              "mensagem": "Serviço iniciado com sucesso.",
+              "id": "evt-1001"
+            },
+            {
+              "timestamp": "2025-08-27T08:15:23Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "DEBUG",
+              "mensagem": "Carregamento de configuração concluído em 124ms.",
+              "id": "evt-1002"
+            },
+            {
+              "timestamp": "2025-08-27T08:22:47Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "WARN",
+              "mensagem": "Latência de resposta acima do limite: 320ms (limite 250ms).",
+              "id": "evt-1003"
+            },
+            {
+              "timestamp": "2025-08-27T08:30:05Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "ERROR",
+              "mensagem": "Falha ao conectar ao banco de dados: timeout após 30s.",
+              "id": "evt-1004"
+            },
+            {
+              "timestamp": "2025-08-27T08:38:12Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "INFO",
+              "mensagem": "Reconexão ao banco de dados reestabelecida.",
+              "id": "evt-1005"
+            },
+            {
+              "timestamp": "2025-08-27T08:45:33Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "nivel_minimo_sem_api_key",
+              "mensagem": "Evento de nível mínimo registrado conforme configuração.",
+              "id": "evt-1006"
+            },
+            {
+              "timestamp": "2025-08-27T08:52:01Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "INFO",
+              "mensagem": "Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.",
+              "id": "evt-1007"
+            },
+            {
+              "timestamp": "2025-08-27T09:00:19Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "WARN",
+              "mensagem": "Uso de memória em 78% (limite de alerta 75%).",
+              "id": "evt-1008"
+            },
+            {
+              "timestamp": "2025-08-27T09:08:44Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "INFO",
+              "mensagem": "Backup incremental concluído em 4,3MB.",
+              "id": "evt-1009"
+            },
+            {
+              "timestamp": "2025-08-27T09:15:02Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "ERROR",
+              "mensagem": "Exceção não tratada no módulo de autenticação: NullPointerException.",
+              "id": "evt-1010"
+            },
+            {
+              "timestamp": "2025-08-27T09:22:30Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "INFO",
+              "mensagem": "Módulo de autenticação reiniciado após falha.",
+              "id": "evt-1011"
+            },
+            {
+              "timestamp": "2025-08-27T09:30:10Z",
+              "servico": "nome_servico_sem_api_key",
+              "nivel": "DEBUG",
+              "mensagem": "Cache de sessões atingiu 85% de capacidade.",
+              "id": "evt-1012"
+            }
+          ],
+          "contagem_total": 12,
+          "_entrada": {
+            "nome_servico": "nome_servico_sem_api_key",
+            "janela_tempo_minutos": 211,
+            "nivel_minimo": "nivel_minimo_sem_api_key"
+          }
+        }
+      },
+      "avaliacao": {
+        "objetivo_alcancado": false,
+        "motivo": "etapa ok - criterio: buscar_logs executado com sucesso",
+        "qualidade": "completa",
+        "problemas_saida": []
+      }
+    },
+    {
+      "etapa": 3,
+      "percepcao": "Alerta: alerta de pagamento de latencia no servico de rastreio\nModo: task_based\nEtapa 1 [consultar_metricas]: {\"sucesso\": true, \"dados\": {\"latencia_p99_ms\": 842.5, \"vazao_rps\": 9, \"taxa_erro\": 0.22, \"status\": \"degradado\", \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_minutos\": 406}}}\nEtapa 2 [buscar_logs]: {\"sucesso\": true, \"dados\": {\"eventos\": [{\"timestamp\": \"2025-08-27T08:09:00Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Serviço iniciado com sucesso.\", \"id\": \"evt-1001\"}, {\"timestamp\": \"2025-08-27T08:15:23Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"DEBUG\", \"mensagem\": \"Carregamento de configuração concluído em 124ms.\", \"id\": \"evt-1002\"}, {\"timestamp\": \"2025-08-27T08:22:47Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"WARN\", \"mensagem\": \"Latência de resposta acima do limite: 320ms (limite 250ms).\", \"id\": \"evt-1003\"}, {\"timestamp\": \"2025-08-27T08:30:05Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"ERROR\", \"mensagem\": \"Falha ao conectar ao banco de dados: timeout após 30s.\", \"id\": \"evt-1004\"}, {\"timestamp\": \"2025-08-27T08:38:12Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Reconexão ao banco de dados reestabelecida.\", \"id\": \"evt-1005\"}, {\"timestamp\": \"2025-08-27T08:45:33Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"nivel_minimo_sem_api_key\", \"mensagem\": \"Evento de nível mínimo registrado conforme configuração.\", \"id\": \"evt-1006\"}, {\"timestamp\": \"2025-08-27T08:52:01Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.\", \"id\": \"evt-1007\"}, {\"timestamp\": \"2025-08-27T09:00:19Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"WARN\", \"mensagem\": \"Uso de memória em 78% (limite de alerta 75%).\", \"id\": \"evt-1008\"}, {\"timestamp\": \"2025-08-27T09:08:44Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Backup incremental concluído em 4,3MB.\", \"id\": \"evt-1009\"}, {\"timestamp\": \"2025-08-27T09:15:02Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"ERROR\", \"mensagem\": \"Exceção não tratada no módulo de autenticação: NullPointerException.\", \"id\": \"evt-1010\"}, {\"timestamp\": \"2025-08-27T09:22:30Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Módulo de autenticação reiniciado após falha.\", \"id\": \"evt-1011\"}, {\"timestamp\": \"2025-08-27T09:30:10Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"DEBUG\", \"mensagem\": \"Cache de sessões atingiu 85% de capacidade.\", \"id\": \"evt-1012\"}], \"contagem_total\": 12, \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_minutos\": 211, \"nivel_minimo\": \"nivel_minimo_sem_api_key\"}}}\nFerramentas ja utilizadas: consultar_metricas, buscar_logs\nEtapas realizadas: 3/10\nChamadas de ferramenta: 2/9",
+      "plano": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "historico_deploys",
+        "argumentos_ferramenta": {
+          "nome_servico": "nome_servico_sem_api_key",
+          "janela_tempo_horas": 80
+        },
+        "criterio_sucesso": "historico_deploys executado com sucesso"
+      },
+      "resultado_acao": {
+        "sucesso": true,
+        "dados": {
+          "deploys": [
+            {
+              "timestamp": "2025-09-15T09:12:00Z",
+              "versao": "v2.3.1",
+              "autor": "alice.silva",
+              "status": "sucesso",
+              "duracao_minutos": 5
+            },
+            {
+              "timestamp": "2025-09-14T18:45:00Z",
+              "versao": "v2.3.0",
+              "autor": "brian.costa",
+              "status": "sucesso",
+              "duracao_minutos": 7
+            },
+            {
+              "timestamp": "2025-09-14T02:30:00Z",
+              "versao": "v2.2.9",
+              "autor": "carla.mendes",
+              "status": "falha",
+              "duracao_minutos": 4
+            },
+            {
+              "timestamp": "2025-09-13T11:05:00Z",
+              "versao": "v2.2.8",
+              "autor": "diego.ferraz",
+              "status": "sucesso",
+              "duracao_minutos": 6
+            }
+          ],
+          "contagem_total": 4,
+          "_entrada": {
+            "nome_servico": "nome_servico_sem_api_key",
+            "janela_tempo_horas": 80
+          }
+        }
+      },
+      "avaliacao": {
+        "objetivo_alcancado": false,
+        "motivo": "etapa ok - criterio: historico_deploys executado com sucesso",
+        "qualidade": "completa",
+        "problemas_saida": []
+      }
+    },
+    {
+      "etapa": 4,
+      "percepcao": "Alerta: alerta de pagamento de latencia no servico de rastreio\nModo: task_based\nEtapa 1 [consultar_metricas]: {\"sucesso\": true, \"dados\": {\"latencia_p99_ms\": 842.5, \"vazao_rps\": 9, \"taxa_erro\": 0.22, \"status\": \"degradado\", \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_minutos\": 406}}}\nEtapa 2 [buscar_logs]: {\"sucesso\": true, \"dados\": {\"eventos\": [{\"timestamp\": \"2025-08-27T08:09:00Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Serviço iniciado com sucesso.\", \"id\": \"evt-1001\"}, {\"timestamp\": \"2025-08-27T08:15:23Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"DEBUG\", \"mensagem\": \"Carregamento de configuração concluído em 124ms.\", \"id\": \"evt-1002\"}, {\"timestamp\": \"2025-08-27T08:22:47Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"WARN\", \"mensagem\": \"Latência de resposta acima do limite: 320ms (limite 250ms).\", \"id\": \"evt-1003\"}, {\"timestamp\": \"2025-08-27T08:30:05Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"ERROR\", \"mensagem\": \"Falha ao conectar ao banco de dados: timeout após 30s.\", \"id\": \"evt-1004\"}, {\"timestamp\": \"2025-08-27T08:38:12Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Reconexão ao banco de dados reestabelecida.\", \"id\": \"evt-1005\"}, {\"timestamp\": \"2025-08-27T08:45:33Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"nivel_minimo_sem_api_key\", \"mensagem\": \"Evento de nível mínimo registrado conforme configuração.\", \"id\": \"evt-1006\"}, {\"timestamp\": \"2025-08-27T08:52:01Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.\", \"id\": \"evt-1007\"}, {\"timestamp\": \"2025-08-27T09:00:19Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"WARN\", \"mensagem\": \"Uso de memória em 78% (limite de alerta 75%).\", \"id\": \"evt-1008\"}, {\"timestamp\": \"2025-08-27T09:08:44Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Backup incremental concluído em 4,3MB.\", \"id\": \"evt-1009\"}, {\"timestamp\": \"2025-08-27T09:15:02Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"ERROR\", \"mensagem\": \"Exceção não tratada no módulo de autenticação: NullPointerException.\", \"id\": \"evt-1010\"}, {\"timestamp\": \"2025-08-27T09:22:30Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Módulo de autenticação reiniciado após falha.\", \"id\": \"evt-1011\"}, {\"timestamp\": \"2025-08-27T09:30:10Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"DEBUG\", \"mensagem\": \"Cache de sessões atingiu 85% de capacidade.\", \"id\": \"evt-1012\"}], \"contagem_total\": 12, \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_minutos\": 211, \"nivel_minimo\": \"nivel_minimo_sem_api_key\"}}}\nEtapa 3 [historico_deploys]: {\"sucesso\": true, \"dados\": {\"deploys\": [{\"timestamp\": \"2025-09-15T09:12:00Z\", \"versao\": \"v2.3.1\", \"autor\": \"alice.silva\", \"status\": \"sucesso\", \"duracao_minutos\": 5}, {\"timestamp\": \"2025-09-14T18:45:00Z\", \"versao\": \"v2.3.0\", \"autor\": \"brian.costa\", \"status\": \"sucesso\", \"duracao_minutos\": 7}, {\"timestamp\": \"2025-09-14T02:30:00Z\", \"versao\": \"v2.2.9\", \"autor\": \"carla.mendes\", \"status\": \"falha\", \"duracao_minutos\": 4}, {\"timestamp\": \"2025-09-13T11:05:00Z\", \"versao\": \"v2.2.8\", \"autor\": \"diego.ferraz\", \"status\": \"sucesso\", \"duracao_minutos\": 6}], \"contagem_total\": 4, \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_horas\": 80}}}\nFerramentas ja utilizadas: consultar_metricas, buscar_logs, historico_deploys\nEtapas realizadas: 4/10\nChamadas de ferramenta: 3/9",
+      "plano": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "relatorio_incidente",
+        "argumentos_ferramenta": {
+          "nome_servico": "nome_servico_sem_api_key",
+          "severidade": "severidade_sem_api_key",
+          "evidencia": {
+            "consultar_metricas": {
+              "latencia_p99_ms": 842.5,
+              "vazao_rps": 9,
+              "taxa_erro": 0.22,
+              "status": "degradado",
+              "_entrada": {
+                "nome_servico": "nome_servico_sem_api_key",
+                "janela_tempo_minutos": 406
+              }
+            },
+            "buscar_logs": {
+              "eventos": [
+                {
+                  "timestamp": "2025-08-27T08:09:00Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "INFO",
+                  "mensagem": "Serviço iniciado com sucesso.",
+                  "id": "evt-1001"
+                },
+                {
+                  "timestamp": "2025-08-27T08:15:23Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "DEBUG",
+                  "mensagem": "Carregamento de configuração concluído em 124ms.",
+                  "id": "evt-1002"
+                },
+                {
+                  "timestamp": "2025-08-27T08:22:47Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "WARN",
+                  "mensagem": "Latência de resposta acima do limite: 320ms (limite 250ms).",
+                  "id": "evt-1003"
+                },
+                {
+                  "timestamp": "2025-08-27T08:30:05Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "ERROR",
+                  "mensagem": "Falha ao conectar ao banco de dados: timeout após 30s.",
+                  "id": "evt-1004"
+                },
+                {
+                  "timestamp": "2025-08-27T08:38:12Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "INFO",
+                  "mensagem": "Reconexão ao banco de dados reestabelecida.",
+                  "id": "evt-1005"
+                },
+                {
+                  "timestamp": "2025-08-27T08:45:33Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "nivel_minimo_sem_api_key",
+                  "mensagem": "Evento de nível mínimo registrado conforme configuração.",
+                  "id": "evt-1006"
+                },
+                {
+                  "timestamp": "2025-08-27T08:52:01Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "INFO",
+                  "mensagem": "Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.",
+                  "id": "evt-1007"
+                },
+                {
+                  "timestamp": "2025-08-27T09:00:19Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "WARN",
+                  "mensagem": "Uso de memória em 78% (limite de alerta 75%).",
+                  "id": "evt-1008"
+                },
+                {
+                  "timestamp": "2025-08-27T09:08:44Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "INFO",
+                  "mensagem": "Backup incremental concluído em 4,3MB.",
+                  "id": "evt-1009"
+                },
+                {
+                  "timestamp": "2025-08-27T09:15:02Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "ERROR",
+                  "mensagem": "Exceção não tratada no módulo de autenticação: NullPointerException.",
+                  "id": "evt-1010"
+                },
+                {
+                  "timestamp": "2025-08-27T09:22:30Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "INFO",
+                  "mensagem": "Módulo de autenticação reiniciado após falha.",
+                  "id": "evt-1011"
+                },
+                {
+                  "timestamp": "2025-08-27T09:30:10Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "DEBUG",
+                  "mensagem": "Cache de sessões atingiu 85% de capacidade.",
+                  "id": "evt-1012"
+                }
+              ],
+              "contagem_total": 12,
+              "_entrada": {
+                "nome_servico": "nome_servico_sem_api_key",
+                "janela_tempo_minutos": 211,
+                "nivel_minimo": "nivel_minimo_sem_api_key"
+              }
+            },
+            "historico_deploys": {
+              "deploys": [
+                {
+                  "timestamp": "2025-09-15T09:12:00Z",
+                  "versao": "v2.3.1",
+                  "autor": "alice.silva",
+                  "status": "sucesso",
+                  "duracao_minutos": 5
+                },
+                {
+                  "timestamp": "2025-09-14T18:45:00Z",
+                  "versao": "v2.3.0",
+                  "autor": "brian.costa",
+                  "status": "sucesso",
+                  "duracao_minutos": 7
+                },
+                {
+                  "timestamp": "2025-09-14T02:30:00Z",
+                  "versao": "v2.2.9",
+                  "autor": "carla.mendes",
+                  "status": "falha",
+                  "duracao_minutos": 4
+                },
+                {
+                  "timestamp": "2025-09-13T11:05:00Z",
+                  "versao": "v2.2.8",
+                  "autor": "diego.ferraz",
+                  "status": "sucesso",
+                  "duracao_minutos": 6
+                }
+              ],
+              "contagem_total": 4,
+              "_entrada": {
+                "nome_servico": "nome_servico_sem_api_key",
+                "janela_tempo_horas": 80
+              }
+            }
+          },
+          "recomendacao": {
+            "consultar_metricas": {
+              "latencia_p99_ms": 842.5,
+              "vazao_rps": 9,
+              "taxa_erro": 0.22,
+              "status": "degradado",
+              "_entrada": {
+                "nome_servico": "nome_servico_sem_api_key",
+                "janela_tempo_minutos": 406
+              }
+            },
+            "buscar_logs": {
+              "eventos": [
+                {
+                  "timestamp": "2025-08-27T08:09:00Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "INFO",
+                  "mensagem": "Serviço iniciado com sucesso.",
+                  "id": "evt-1001"
+                },
+                {
+                  "timestamp": "2025-08-27T08:15:23Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "DEBUG",
+                  "mensagem": "Carregamento de configuração concluído em 124ms.",
+                  "id": "evt-1002"
+                },
+                {
+                  "timestamp": "2025-08-27T08:22:47Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "WARN",
+                  "mensagem": "Latência de resposta acima do limite: 320ms (limite 250ms).",
+                  "id": "evt-1003"
+                },
+                {
+                  "timestamp": "2025-08-27T08:30:05Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "ERROR",
+                  "mensagem": "Falha ao conectar ao banco de dados: timeout após 30s.",
+                  "id": "evt-1004"
+                },
+                {
+                  "timestamp": "2025-08-27T08:38:12Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "INFO",
+                  "mensagem": "Reconexão ao banco de dados reestabelecida.",
+                  "id": "evt-1005"
+                },
+                {
+                  "timestamp": "2025-08-27T08:45:33Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "nivel_minimo_sem_api_key",
+                  "mensagem": "Evento de nível mínimo registrado conforme configuração.",
+                  "id": "evt-1006"
+                },
+                {
+                  "timestamp": "2025-08-27T08:52:01Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "INFO",
+                  "mensagem": "Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.",
+                  "id": "evt-1007"
+                },
+                {
+                  "timestamp": "2025-08-27T09:00:19Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "WARN",
+                  "mensagem": "Uso de memória em 78% (limite de alerta 75%).",
+                  "id": "evt-1008"
+                },
+                {
+                  "timestamp": "2025-08-27T09:08:44Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "INFO",
+                  "mensagem": "Backup incremental concluído em 4,3MB.",
+                  "id": "evt-1009"
+                },
+                {
+                  "timestamp": "2025-08-27T09:15:02Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "ERROR",
+                  "mensagem": "Exceção não tratada no módulo de autenticação: NullPointerException.",
+                  "id": "evt-1010"
+                },
+                {
+                  "timestamp": "2025-08-27T09:22:30Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "INFO",
+                  "mensagem": "Módulo de autenticação reiniciado após falha.",
+                  "id": "evt-1011"
+                },
+                {
+                  "timestamp": "2025-08-27T09:30:10Z",
+                  "servico": "nome_servico_sem_api_key",
+                  "nivel": "DEBUG",
+                  "mensagem": "Cache de sessões atingiu 85% de capacidade.",
+                  "id": "evt-1012"
+                }
+              ],
+              "contagem_total": 12,
+              "_entrada": {
+                "nome_servico": "nome_servico_sem_api_key",
+                "janela_tempo_minutos": 211,
+                "nivel_minimo": "nivel_minimo_sem_api_key"
+              }
+            },
+            "historico_deploys": {
+              "deploys": [
+                {
+                  "timestamp": "2025-09-15T09:12:00Z",
+                  "versao": "v2.3.1",
+                  "autor": "alice.silva",
+                  "status": "sucesso",
+                  "duracao_minutos": 5
+                },
+                {
+                  "timestamp": "2025-09-14T18:45:00Z",
+                  "versao": "v2.3.0",
+                  "autor": "brian.costa",
+                  "status": "sucesso",
+                  "duracao_minutos": 7
+                },
+                {
+                  "timestamp": "2025-09-14T02:30:00Z",
+                  "versao": "v2.2.9",
+                  "autor": "carla.mendes",
+                  "status": "falha",
+                  "duracao_minutos": 4
+                },
+                {
+                  "timestamp": "2025-09-13T11:05:00Z",
+                  "versao": "v2.2.8",
+                  "autor": "diego.ferraz",
+                  "status": "sucesso",
+                  "duracao_minutos": 6
+                }
+              ],
+              "contagem_total": 4,
+              "_entrada": {
+                "nome_servico": "nome_servico_sem_api_key",
+                "janela_tempo_horas": 80
+              }
+            }
+          }
+        },
+        "criterio_sucesso": "relatorio_incidente executado com sucesso"
+      },
+      "resultado_acao": {
+        "sucesso": true,
+        "dados": {
+          "id_incidente": "INC-20250916-0042",
+          "status": "aberto",
+          "_entrada": {
+            "nome_servico": "nome_servico_sem_api_key",
+            "severidade": "severidade_sem_api_key",
+            "evidencia": {
+              "consultar_metricas": {
+                "latencia_p99_ms": 842.5,
+                "vazao_rps": 9,
+                "taxa_erro": 0.22,
+                "status": "degradado",
+                "_entrada": {
+                  "nome_servico": "nome_servico_sem_api_key",
+                  "janela_tempo_minutos": 406
+                }
+              },
+              "buscar_logs": {
+                "eventos": [
+                  {
+                    "timestamp": "2025-08-27T08:09:00Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "INFO",
+                    "mensagem": "Serviço iniciado com sucesso.",
+                    "id": "evt-1001"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:15:23Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "DEBUG",
+                    "mensagem": "Carregamento de configuração concluído em 124ms.",
+                    "id": "evt-1002"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:22:47Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "WARN",
+                    "mensagem": "Latência de resposta acima do limite: 320ms (limite 250ms).",
+                    "id": "evt-1003"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:30:05Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "ERROR",
+                    "mensagem": "Falha ao conectar ao banco de dados: timeout após 30s.",
+                    "id": "evt-1004"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:38:12Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "INFO",
+                    "mensagem": "Reconexão ao banco de dados reestabelecida.",
+                    "id": "evt-1005"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:45:33Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "nivel_minimo_sem_api_key",
+                    "mensagem": "Evento de nível mínimo registrado conforme configuração.",
+                    "id": "evt-1006"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:52:01Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "INFO",
+                    "mensagem": "Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.",
+                    "id": "evt-1007"
+                  },
+                  {
+                    "timestamp": "2025-08-27T09:00:19Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "WARN",
+                    "mensagem": "Uso de memória em 78% (limite de alerta 75%).",
+                    "id": "evt-1008"
+                  },
+                  {
+                    "timestamp": "2025-08-27T09:08:44Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "INFO",
+                    "mensagem": "Backup incremental concluído em 4,3MB.",
+                    "id": "evt-1009"
+                  },
+                  {
+                    "timestamp": "2025-08-27T09:15:02Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "ERROR",
+                    "mensagem": "Exceção não tratada no módulo de autenticação: NullPointerException.",
+                    "id": "evt-1010"
+                  },
+                  {
+                    "timestamp": "2025-08-27T09:22:30Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "INFO",
+                    "mensagem": "Módulo de autenticação reiniciado após falha.",
+                    "id": "evt-1011"
+                  },
+                  {
+                    "timestamp": "2025-08-27T09:30:10Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "DEBUG",
+                    "mensagem": "Cache de sessões atingiu 85% de capacidade.",
+                    "id": "evt-1012"
+                  }
+                ],
+                "contagem_total": 12,
+                "_entrada": {
+                  "nome_servico": "nome_servico_sem_api_key",
+                  "janela_tempo_minutos": 211,
+                  "nivel_minimo": "nivel_minimo_sem_api_key"
+                }
+              },
+              "historico_deploys": {
+                "deploys": [
+                  {
+                    "timestamp": "2025-09-15T09:12:00Z",
+                    "versao": "v2.3.1",
+                    "autor": "alice.silva",
+                    "status": "sucesso",
+                    "duracao_minutos": 5
+                  },
+                  {
+                    "timestamp": "2025-09-14T18:45:00Z",
+                    "versao": "v2.3.0",
+                    "autor": "brian.costa",
+                    "status": "sucesso",
+                    "duracao_minutos": 7
+                  },
+                  {
+                    "timestamp": "2025-09-14T02:30:00Z",
+                    "versao": "v2.2.9",
+                    "autor": "carla.mendes",
+                    "status": "falha",
+                    "duracao_minutos": 4
+                  },
+                  {
+                    "timestamp": "2025-09-13T11:05:00Z",
+                    "versao": "v2.2.8",
+                    "autor": "diego.ferraz",
+                    "status": "sucesso",
+                    "duracao_minutos": 6
+                  }
+                ],
+                "contagem_total": 4,
+                "_entrada": {
+                  "nome_servico": "nome_servico_sem_api_key",
+                  "janela_tempo_horas": 80
+                }
+              }
+            },
+            "recomendacao": {
+              "consultar_metricas": {
+                "latencia_p99_ms": 842.5,
+                "vazao_rps": 9,
+                "taxa_erro": 0.22,
+                "status": "degradado",
+                "_entrada": {
+                  "nome_servico": "nome_servico_sem_api_key",
+                  "janela_tempo_minutos": 406
+                }
+              },
+              "buscar_logs": {
+                "eventos": [
+                  {
+                    "timestamp": "2025-08-27T08:09:00Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "INFO",
+                    "mensagem": "Serviço iniciado com sucesso.",
+                    "id": "evt-1001"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:15:23Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "DEBUG",
+                    "mensagem": "Carregamento de configuração concluído em 124ms.",
+                    "id": "evt-1002"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:22:47Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "WARN",
+                    "mensagem": "Latência de resposta acima do limite: 320ms (limite 250ms).",
+                    "id": "evt-1003"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:30:05Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "ERROR",
+                    "mensagem": "Falha ao conectar ao banco de dados: timeout após 30s.",
+                    "id": "evt-1004"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:38:12Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "INFO",
+                    "mensagem": "Reconexão ao banco de dados reestabelecida.",
+                    "id": "evt-1005"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:45:33Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "nivel_minimo_sem_api_key",
+                    "mensagem": "Evento de nível mínimo registrado conforme configuração.",
+                    "id": "evt-1006"
+                  },
+                  {
+                    "timestamp": "2025-08-27T08:52:01Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "INFO",
+                    "mensagem": "Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.",
+                    "id": "evt-1007"
+                  },
+                  {
+                    "timestamp": "2025-08-27T09:00:19Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "WARN",
+                    "mensagem": "Uso de memória em 78% (limite de alerta 75%).",
+                    "id": "evt-1008"
+                  },
+                  {
+                    "timestamp": "2025-08-27T09:08:44Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "INFO",
+                    "mensagem": "Backup incremental concluído em 4,3MB.",
+                    "id": "evt-1009"
+                  },
+                  {
+                    "timestamp": "2025-08-27T09:15:02Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "ERROR",
+                    "mensagem": "Exceção não tratada no módulo de autenticação: NullPointerException.",
+                    "id": "evt-1010"
+                  },
+                  {
+                    "timestamp": "2025-08-27T09:22:30Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "INFO",
+                    "mensagem": "Módulo de autenticação reiniciado após falha.",
+                    "id": "evt-1011"
+                  },
+                  {
+                    "timestamp": "2025-08-27T09:30:10Z",
+                    "servico": "nome_servico_sem_api_key",
+                    "nivel": "DEBUG",
+                    "mensagem": "Cache de sessões atingiu 85% de capacidade.",
+                    "id": "evt-1012"
+                  }
+                ],
+                "contagem_total": 12,
+                "_entrada": {
+                  "nome_servico": "nome_servico_sem_api_key",
+                  "janela_tempo_minutos": 211,
+                  "nivel_minimo": "nivel_minimo_sem_api_key"
+                }
+              },
+              "historico_deploys": {
+                "deploys": [
+                  {
+                    "timestamp": "2025-09-15T09:12:00Z",
+                    "versao": "v2.3.1",
+                    "autor": "alice.silva",
+                    "status": "sucesso",
+                    "duracao_minutos": 5
+                  },
+                  {
+                    "timestamp": "2025-09-14T18:45:00Z",
+                    "versao": "v2.3.0",
+                    "autor": "brian.costa",
+                    "status": "sucesso",
+                    "duracao_minutos": 7
+                  },
+                  {
+                    "timestamp": "2025-09-14T02:30:00Z",
+                    "versao": "v2.2.9",
+                    "autor": "carla.mendes",
+                    "status": "falha",
+                    "duracao_minutos": 4
+                  },
+                  {
+                    "timestamp": "2025-09-13T11:05:00Z",
+                    "versao": "v2.2.8",
+                    "autor": "diego.ferraz",
+                    "status": "sucesso",
+                    "duracao_minutos": 6
+                  }
+                ],
+                "contagem_total": 4,
+                "_entrada": {
+                  "nome_servico": "nome_servico_sem_api_key",
+                  "janela_tempo_horas": 80
+                }
+              }
+            }
+          }
+        }
+      },
+      "avaliacao": {
+        "objetivo_alcancado": false,
+        "motivo": "etapa ok - criterio: relatorio_incidente executado com sucesso",
+        "qualidade": "completa",
+        "problemas_saida": []
+      }
+    },
+    {
+      "etapa": 5,
+      "percepcao": "Alerta: alerta de pagamento de latencia no servico de rastreio\nModo: task_based\nEtapa 1 [consultar_metricas]: {\"sucesso\": true, \"dados\": {\"latencia_p99_ms\": 842.5, \"vazao_rps\": 9, \"taxa_erro\": 0.22, \"status\": \"degradado\", \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_minutos\": 406}}}\nEtapa 2 [buscar_logs]: {\"sucesso\": true, \"dados\": {\"eventos\": [{\"timestamp\": \"2025-08-27T08:09:00Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Serviço iniciado com sucesso.\", \"id\": \"evt-1001\"}, {\"timestamp\": \"2025-08-27T08:15:23Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"DEBUG\", \"mensagem\": \"Carregamento de configuração concluído em 124ms.\", \"id\": \"evt-1002\"}, {\"timestamp\": \"2025-08-27T08:22:47Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"WARN\", \"mensagem\": \"Latência de resposta acima do limite: 320ms (limite 250ms).\", \"id\": \"evt-1003\"}, {\"timestamp\": \"2025-08-27T08:30:05Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"ERROR\", \"mensagem\": \"Falha ao conectar ao banco de dados: timeout após 30s.\", \"id\": \"evt-1004\"}, {\"timestamp\": \"2025-08-27T08:38:12Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Reconexão ao banco de dados reestabelecida.\", \"id\": \"evt-1005\"}, {\"timestamp\": \"2025-08-27T08:45:33Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"nivel_minimo_sem_api_key\", \"mensagem\": \"Evento de nível mínimo registrado conforme configuração.\", \"id\": \"evt-1006\"}, {\"timestamp\": \"2025-08-27T08:52:01Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.\", \"id\": \"evt-1007\"}, {\"timestamp\": \"2025-08-27T09:00:19Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"WARN\", \"mensagem\": \"Uso de memória em 78% (limite de alerta 75%).\", \"id\": \"evt-1008\"}, {\"timestamp\": \"2025-08-27T09:08:44Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Backup incremental concluído em 4,3MB.\", \"id\": \"evt-1009\"}, {\"timestamp\": \"2025-08-27T09:15:02Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"ERROR\", \"mensagem\": \"Exceção não tratada no módulo de autenticação: NullPointerException.\", \"id\": \"evt-1010\"}, {\"timestamp\": \"2025-08-27T09:22:30Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Módulo de autenticação reiniciado após falha.\", \"id\": \"evt-1011\"}, {\"timestamp\": \"2025-08-27T09:30:10Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"DEBUG\", \"mensagem\": \"Cache de sessões atingiu 85% de capacidade.\", \"id\": \"evt-1012\"}], \"contagem_total\": 12, \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_minutos\": 211, \"nivel_minimo\": \"nivel_minimo_sem_api_key\"}}}\nEtapa 3 [historico_deploys]: {\"sucesso\": true, \"dados\": {\"deploys\": [{\"timestamp\": \"2025-09-15T09:12:00Z\", \"versao\": \"v2.3.1\", \"autor\": \"alice.silva\", \"status\": \"sucesso\", \"duracao_minutos\": 5}, {\"timestamp\": \"2025-09-14T18:45:00Z\", \"versao\": \"v2.3.0\", \"autor\": \"brian.costa\", \"status\": \"sucesso\", \"duracao_minutos\": 7}, {\"timestamp\": \"2025-09-14T02:30:00Z\", \"versao\": \"v2.2.9\", \"autor\": \"carla.mendes\", \"status\": \"falha\", \"duracao_minutos\": 4}, {\"timestamp\": \"2025-09-13T11:05:00Z\", \"versao\": \"v2.2.8\", \"autor\": \"diego.ferraz\", \"status\": \"sucesso\", \"duracao_minutos\": 6}], \"contagem_total\": 4, \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_horas\": 80}}}\nEtapa 4 [relatorio_incidente]: {\"sucesso\": true, \"dados\": {\"id_incidente\": \"INC-20250916-0042\", \"status\": \"aberto\", \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"severidade\": \"severidade_sem_api_key\", \"evidencia\": {\"consultar_metricas\": {\"latencia_p99_ms\": 842.5, \"vazao_rps\": 9, \"taxa_erro\": 0.22, \"status\": \"degradado\", \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_minutos\": 406}}, \"buscar_logs\": {\"eventos\": [{\"timestamp\": \"2025-08-27T08:09:00Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Serviço iniciado com sucesso.\", \"id\": \"evt-1001\"}, {\"timestamp\": \"2025-08-27T08:15:23Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"DEBUG\", \"mensagem\": \"Carregamento de configuração concluído em 124ms.\", \"id\": \"evt-1002\"}, {\"timestamp\": \"2025-08-27T08:22:47Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"WARN\", \"mensagem\": \"Latência de resposta acima do limite: 320ms (limite 250ms).\", \"id\": \"evt-1003\"}, {\"timestamp\": \"2025-08-27T08:30:05Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"ERROR\", \"mensagem\": \"Falha ao conectar ao banco de dados: timeout após 30s.\", \"id\": \"evt-1004\"}, {\"timestamp\": \"2025-08-27T08:38:12Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Reconexão ao banco de dados reestabelecida.\", \"id\": \"evt-1005\"}, {\"timestamp\": \"2025-08-27T08:45:33Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"nivel_minimo_sem_api_key\", \"mensagem\": \"Evento de nível mínimo registrado conforme configuração.\", \"id\": \"evt-1006\"}, {\"timestamp\": \"2025-08-27T08:52:01Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.\", \"id\": \"evt-1007\"}, {\"timestamp\": \"2025-08-27T09:00:19Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"WARN\", \"mensagem\": \"Uso de memória em 78% (limite de alerta 75%).\", \"id\": \"evt-1008\"}, {\"timestamp\": \"2025-08-27T09:08:44Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Backup incremental concluído em 4,3MB.\", \"id\": \"evt-1009\"}, {\"timestamp\": \"2025-08-27T09:15:02Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"ERROR\", \"mensagem\": \"Exceção não tratada no módulo de autenticação: NullPointerException.\", \"id\": \"evt-1010\"}, {\"timestamp\": \"2025-08-27T09:22:30Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Módulo de autenticação reiniciado após falha.\", \"id\": \"evt-1011\"}, {\"timestamp\": \"2025-08-27T09:30:10Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"DEBUG\", \"mensagem\": \"Cache de sessões atingiu 85% de capacidade.\", \"id\": \"evt-1012\"}], \"contagem_total\": 12, \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_minutos\": 211, \"nivel_minimo\": \"nivel_minimo_sem_api_key\"}}, \"historico_deploys\": {\"deploys\": [{\"timestamp\": \"2025-09-15T09:12:00Z\", \"versao\": \"v2.3.1\", \"autor\": \"alice.silva\", \"status\": \"sucesso\", \"duracao_minutos\": 5}, {\"timestamp\": \"2025-09-14T18:45:00Z\", \"versao\": \"v2.3.0\", \"autor\": \"brian.costa\", \"status\": \"sucesso\", \"duracao_minutos\": 7}, {\"timestamp\": \"2025-09-14T02:30:00Z\", \"versao\": \"v2.2.9\", \"autor\": \"carla.mendes\", \"status\": \"falha\", \"duracao_minutos\": 4}, {\"timestamp\": \"2025-09-13T11:05:00Z\", \"versao\": \"v2.2.8\", \"autor\": \"diego.ferraz\", \"status\": \"sucesso\", \"duracao_minutos\": 6}], \"contagem_total\": 4, \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_horas\": 80}}}, \"recomendacao\": {\"consultar_metricas\": {\"latencia_p99_ms\": 842.5, \"vazao_rps\": 9, \"taxa_erro\": 0.22, \"status\": \"degradado\", \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_minutos\": 406}}, \"buscar_logs\": {\"eventos\": [{\"timestamp\": \"2025-08-27T08:09:00Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Serviço iniciado com sucesso.\", \"id\": \"evt-1001\"}, {\"timestamp\": \"2025-08-27T08:15:23Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"DEBUG\", \"mensagem\": \"Carregamento de configuração concluído em 124ms.\", \"id\": \"evt-1002\"}, {\"timestamp\": \"2025-08-27T08:22:47Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"WARN\", \"mensagem\": \"Latência de resposta acima do limite: 320ms (limite 250ms).\", \"id\": \"evt-1003\"}, {\"timestamp\": \"2025-08-27T08:30:05Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"ERROR\", \"mensagem\": \"Falha ao conectar ao banco de dados: timeout após 30s.\", \"id\": \"evt-1004\"}, {\"timestamp\": \"2025-08-27T08:38:12Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Reconexão ao banco de dados reestabelecida.\", \"id\": \"evt-1005\"}, {\"timestamp\": \"2025-08-27T08:45:33Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"nivel_minimo_sem_api_key\", \"mensagem\": \"Evento de nível mínimo registrado conforme configuração.\", \"id\": \"evt-1006\"}, {\"timestamp\": \"2025-08-27T08:52:01Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.\", \"id\": \"evt-1007\"}, {\"timestamp\": \"2025-08-27T09:00:19Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"WARN\", \"mensagem\": \"Uso de memória em 78% (limite de alerta 75%).\", \"id\": \"evt-1008\"}, {\"timestamp\": \"2025-08-27T09:08:44Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Backup incremental concluído em 4,3MB.\", \"id\": \"evt-1009\"}, {\"timestamp\": \"2025-08-27T09:15:02Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"ERROR\", \"mensagem\": \"Exceção não tratada no módulo de autenticação: NullPointerException.\", \"id\": \"evt-1010\"}, {\"timestamp\": \"2025-08-27T09:22:30Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"INFO\", \"mensagem\": \"Módulo de autenticação reiniciado após falha.\", \"id\": \"evt-1011\"}, {\"timestamp\": \"2025-08-27T09:30:10Z\", \"servico\": \"nome_servico_sem_api_key\", \"nivel\": \"DEBUG\", \"mensagem\": \"Cache de sessões atingiu 85% de capacidade.\", \"id\": \"evt-1012\"}], \"contagem_total\": 12, \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_minutos\": 211, \"nivel_minimo\": \"nivel_minimo_sem_api_key\"}}, \"historico_deploys\": {\"deploys\": [{\"timestamp\": \"2025-09-15T09:12:00Z\", \"versao\": \"v2.3.1\", \"autor\": \"alice.silva\", \"status\": \"sucesso\", \"duracao_minutos\": 5}, {\"timestamp\": \"2025-09-14T18:45:00Z\", \"versao\": \"v2.3.0\", \"autor\": \"brian.costa\", \"status\": \"sucesso\", \"duracao_minutos\": 7}, {\"timestamp\": \"2025-09-14T02:30:00Z\", \"versao\": \"v2.2.9\", \"autor\": \"carla.mendes\", \"status\": \"falha\", \"duracao_minutos\": 4}, {\"timestamp\": \"2025-09-13T11:05:00Z\", \"versao\": \"v2.2.8\", \"autor\": \"diego.ferraz\", \"status\": \"sucesso\", \"duracao_minutos\": 6}], \"contagem_total\": 4, \"_entrada\": {\"nome_servico\": \"nome_servico_sem_api_key\", \"janela_tempo_horas\": 80}}}}}}\nFerramentas ja utilizadas: consultar_metricas, buscar_logs, historico_deploys, relatorio_incidente\nEtapas realizadas: 5/10\nChamadas de ferramenta: 4/9",
+      "plano": {
+        "proxima_acao": "FINALIZAR",
+        "nome_ferramenta": null,
+        "argumentos_ferramenta": null,
+        "criterio_sucesso": "Diagnostico: [consultar_metricas] latencia_p99_ms=842.5, vazao_rps=9, taxa_erro=0.22, status=degradado | [buscar_logs] eventos=[{'timestamp': '2025-08-27T08:09:00Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Serviço iniciado com sucesso.', 'id': 'evt-1001'}, {'timestamp': '2025-08-27T08:15:23Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Carregamento de configuração concluído em 124ms.', 'id': 'evt-1002'}, {'timestamp': '2025-08-27T08:22:47Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Latência de resposta acima do limite: 320ms (limite 250ms).', 'id': 'evt-1003'}, {'timestamp': '2025-08-27T08:30:05Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Falha ao conectar ao banco de dados: timeout após 30s.', 'id': 'evt-1004'}, {'timestamp': '2025-08-27T08:38:12Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Reconexão ao banco de dados reestabelecida.', 'id': 'evt-1005'}, {'timestamp': '2025-08-27T08:45:33Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'nivel_minimo_sem_api_key', 'mensagem': 'Evento de nível mínimo registrado conforme configuração.', 'id': 'evt-1006'}, {'timestamp': '2025-08-27T08:52:01Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.', 'id': 'evt-1007'}, {'timestamp': '2025-08-27T09:00:19Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Uso de memória em 78% (limite de alerta 75%).', 'id': 'evt-1008'}, {'timestamp': '2025-08-27T09:08:44Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Backup incremental concluído em 4,3MB.', 'id': 'evt-1009'}, {'timestamp': '2025-08-27T09:15:02Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Exceção não tratada no módulo de autenticação: NullPointerException.', 'id': 'evt-1010'}, {'timestamp': '2025-08-27T09:22:30Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Módulo de autenticação reiniciado após falha.', 'id': 'evt-1011'}, {'timestamp': '2025-08-27T09:30:10Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Cache de sessões atingiu 85% de capacidade.', 'id': 'evt-1012'}], contagem_total=12 | [historico_deploys] deploys=[{'timestamp': '2025-09-15T09:12:00Z', 'versao': 'v2.3.1', 'autor': 'alice.silva', 'status': 'sucesso', 'duracao_minutos': 5}, {'timestamp': '2025-09-14T18:45:00Z', 'versao': 'v2.3.0', 'autor': 'brian.costa', 'status': 'sucesso', 'duracao_minutos': 7}, {'timestamp': '2025-09-14T02:30:00Z', 'versao': 'v2.2.9', 'autor': 'carla.mendes', 'status': 'falha', 'duracao_minutos': 4}, {'timestamp': '2025-09-13T11:05:00Z', 'versao': 'v2.2.8', 'autor': 'diego.ferraz', 'status': 'sucesso', 'duracao_minutos': 6}], contagem_total=4 | [relatorio_incidente] id_incidente=INC-20250916-0042, status=aberto"
+      },
+      "resultado_acao": null,
+      "avaliacao": {
+        "objetivo_alcancado": true,
+        "motivo": "Diagnostico: [consultar_metricas] latencia_p99_ms=842.5, vazao_rps=9, taxa_erro=0.22, status=degradado | [buscar_logs] eventos=[{'timestamp': '2025-08-27T08:09:00Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Serviço iniciado com sucesso.', 'id': 'evt-1001'}, {'timestamp': '2025-08-27T08:15:23Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Carregamento de configuração concluído em 124ms.', 'id': 'evt-1002'}, {'timestamp': '2025-08-27T08:22:47Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Latência de resposta acima do limite: 320ms (limite 250ms).', 'id': 'evt-1003'}, {'timestamp': '2025-08-27T08:30:05Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Falha ao conectar ao banco de dados: timeout após 30s.', 'id': 'evt-1004'}, {'timestamp': '2025-08-27T08:38:12Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Reconexão ao banco de dados reestabelecida.', 'id': 'evt-1005'}, {'timestamp': '2025-08-27T08:45:33Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'nivel_minimo_sem_api_key', 'mensagem': 'Evento de nível mínimo registrado conforme configuração.', 'id': 'evt-1006'}, {'timestamp': '2025-08-27T08:52:01Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.', 'id': 'evt-1007'}, {'timestamp': '2025-08-27T09:00:19Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Uso de memória em 78% (limite de alerta 75%).', 'id': 'evt-1008'}, {'timestamp': '2025-08-27T09:08:44Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Backup incremental concluído em 4,3MB.', 'id': 'evt-1009'}, {'timestamp': '2025-08-27T09:15:02Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Exceção não tratada no módulo de autenticação: NullPointerException.', 'id': 'evt-1010'}, {'timestamp': '2025-08-27T09:22:30Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Módulo de autenticação reiniciado após falha.', 'id': 'evt-1011'}, {'timestamp': '2025-08-27T09:30:10Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Cache de sessões atingiu 85% de capacidade.', 'id': 'evt-1012'}], contagem_total=12 | [historico_deploys] deploys=[{'timestamp': '2025-09-15T09:12:00Z', 'versao': 'v2.3.1', 'autor': 'alice.silva', 'status': 'sucesso', 'duracao_minutos': 5}, {'timestamp': '2025-09-14T18:45:00Z', 'versao': 'v2.3.0', 'autor': 'brian.costa', 'status': 'sucesso', 'duracao_minutos': 7}, {'timestamp': '2025-09-14T02:30:00Z', 'versao': 'v2.2.9', 'autor': 'carla.mendes', 'status': 'falha', 'duracao_minutos': 4}, {'timestamp': '2025-09-13T11:05:00Z', 'versao': 'v2.2.8', 'autor': 'diego.ferraz', 'status': 'sucesso', 'duracao_minutos': 6}], contagem_total=4 | [relatorio_incidente] id_incidente=INC-20250916-0042, status=aberto"
+      }
+    }
+  ],
+  "resumo": "Objetivo: resolver_incidente\nEtapas executadas: 5\nFerramentas chamadas: consultar_metricas, buscar_logs, historico_deploys, relatorio_incidente\nResultado: Diagnostico: [consultar_metricas] latencia_p99_ms=842.5, vazao_rps=9, taxa_erro=0.22, status=degradado | [buscar_logs] eventos=[{'timestamp': '2025-08-27T08:09:00Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Serviço iniciado com sucesso.', 'id': 'evt-1001'}, {'timestamp': '2025-08-27T08:15:23Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Carregamento de configuração concluído em 124ms.', 'id': 'evt-1002'}, {'timestamp': '2025-08-27T08:22:47Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Latência de resposta acima do limite: 320ms (limite 250ms).', 'id': 'evt-1003'}, {'timestamp': '2025-08-27T08:30:05Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Falha ao conectar ao banco de dados: timeout após 30s.', 'id': 'evt-1004'}, {'timestamp': '2025-08-27T08:38:12Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Reconexão ao banco de dados reestabelecida.', 'id': 'evt-1005'}, {'timestamp': '2025-08-27T08:45:33Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'nivel_minimo_sem_api_key', 'mensagem': 'Evento de nível mínimo registrado conforme configuração.', 'id': 'evt-1006'}, {'timestamp': '2025-08-27T08:52:01Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.', 'id': 'evt-1007'}, {'timestamp': '2025-08-27T09:00:19Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Uso de memória em 78% (limite de alerta 75%).', 'id': 'evt-1008'}, {'timestamp': '2025-08-27T09:08:44Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Backup incremental concluído em 4,3MB.', 'id': 'evt-1009'}, {'timestamp': '2025-08-27T09:15:02Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Exceção não tratada no módulo de autenticação: NullPointerException.', 'id': 'evt-1010'}, {'timestamp': '2025-08-27T09:22:30Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Módulo de autenticação reiniciado após falha.', 'id': 'evt-1011'}, {'timestamp': '2025-08-27T09:30:10Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Cache de sessões atingiu 85% de capacidade.', 'id': 'evt-1012'}], contagem_total=12 | [historico_deploys] deploys=[{'timestamp': '2025-09-15T09:12:00Z', 'versao': 'v2.3.1', 'autor': 'alice.silva', 'status': 'sucesso', 'duracao_minutos': 5}, {'timestamp': '2025-09-14T18:45:00Z', 'versao': 'v2.3.0', 'autor': 'brian.costa', 'status': 'sucesso', 'duracao_minutos': 7}, {'timestamp': '2025-09-14T02:30:00Z', 'versao': 'v2.2.9', 'autor': 'carla.mendes', 'status': 'falha', 'duracao_minutos': 4}, {'timestamp': '2025-09-13T11:05:00Z', 'versao': 'v2.2.8', 'autor': 'diego.ferraz', 'status': 'sucesso', 'duracao_minutos': 6}], contagem_total=4 | [relatorio_incidente] id_incidente=INC-20250916-0042, status=aberto\nTipo: task_based",
+  "agente": "monitor-agent",
+  "telemetry_stream": [
+    {
+      "timestamp": "2026-06-19T17:01:20.591206",
+      "elapsed_ms": 0,
+      "trace_id": "6747d310bb69",
+      "tipo": "inicio",
+      "dados": {
+        "entrada": "alerta de pagamento de latencia no servico de rastreio",
+        "objetivo": "resolver_incidente",
+        "max_etapas": 10,
+        "max_tokens": 50000
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:20.591321",
+      "elapsed_ms": 0,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "perceber",
+        "etapa": 1,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:20.591364",
+      "elapsed_ms": 0,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "planejar",
+        "etapa": 1,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:20.591378",
+      "elapsed_ms": 0,
+      "trace_id": "6747d310bb69",
+      "tipo": "plano_gerado",
+      "dados": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "consultar_metricas",
+        "criterio_sucesso": "consultar_metricas executado com sucesso"
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:20.591391",
+      "elapsed_ms": 0,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "validar_payload",
+        "etapa": 1,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:37.579469",
+      "elapsed_ms": 16988,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "agir",
+        "etapa": 1,
+        "duracao_ms": 16988.1
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:37.579485",
+      "elapsed_ms": 16988,
+      "trace_id": "6747d310bb69",
+      "tipo": "ferramenta_executada",
+      "dados": {
+        "ferramenta": "consultar_metricas",
+        "sucesso": true,
+        "duracao_ms": 16988.1,
+        "tokens": 522
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:37.579555",
+      "elapsed_ms": 16988,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "avaliar",
+        "etapa": 1,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:37.579655",
+      "elapsed_ms": 16988,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "perceber",
+        "etapa": 2,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:37.579685",
+      "elapsed_ms": 16988,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "planejar",
+        "etapa": 2,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:37.579699",
+      "elapsed_ms": 16989,
+      "trace_id": "6747d310bb69",
+      "tipo": "plano_gerado",
+      "dados": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "buscar_logs",
+        "criterio_sucesso": "buscar_logs executado com sucesso"
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:37.579710",
+      "elapsed_ms": 16989,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "validar_payload",
+        "etapa": 2,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:08.524337",
+      "elapsed_ms": 47933,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "agir",
+        "etapa": 2,
+        "duracao_ms": 30944.6
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:08.524356",
+      "elapsed_ms": 47933,
+      "trace_id": "6747d310bb69",
+      "tipo": "ferramenta_executada",
+      "dados": {
+        "ferramenta": "buscar_logs",
+        "sucesso": true,
+        "duracao_ms": 30944.6,
+        "tokens": 1768
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:08.524444",
+      "elapsed_ms": 47933,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "avaliar",
+        "etapa": 2,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:08.524569",
+      "elapsed_ms": 47933,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "perceber",
+        "etapa": 3,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:08.524598",
+      "elapsed_ms": 47933,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "planejar",
+        "etapa": 3,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:08.524607",
+      "elapsed_ms": 47933,
+      "trace_id": "6747d310bb69",
+      "tipo": "plano_gerado",
+      "dados": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "historico_deploys",
+        "criterio_sucesso": "historico_deploys executado com sucesso"
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:08.524620",
+      "elapsed_ms": 47933,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "validar_payload",
+        "etapa": 3,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:19.406941",
+      "elapsed_ms": 58816,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "agir",
+        "etapa": 3,
+        "duracao_ms": 10882.3
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:19.406958",
+      "elapsed_ms": 58816,
+      "trace_id": "6747d310bb69",
+      "tipo": "ferramenta_executada",
+      "dados": {
+        "ferramenta": "historico_deploys",
+        "sucesso": true,
+        "duracao_ms": 10882.3,
+        "tokens": 978
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:19.407049",
+      "elapsed_ms": 58816,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "avaliar",
+        "etapa": 3,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:19.407227",
+      "elapsed_ms": 58816,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "perceber",
+        "etapa": 4,
+        "duracao_ms": 0.1
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:19.407269",
+      "elapsed_ms": 58816,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "planejar",
+        "etapa": 4,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:19.407282",
+      "elapsed_ms": 58816,
+      "trace_id": "6747d310bb69",
+      "tipo": "plano_gerado",
+      "dados": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "relatorio_incidente",
+        "criterio_sucesso": "relatorio_incidente executado com sucesso"
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:19.407299",
+      "elapsed_ms": 58816,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "validar_payload",
+        "etapa": 4,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:27.359699",
+      "elapsed_ms": 66769,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "agir",
+        "etapa": 4,
+        "duracao_ms": 7952.4
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:27.359714",
+      "elapsed_ms": 66769,
+      "trace_id": "6747d310bb69",
+      "tipo": "ferramenta_executada",
+      "dados": {
+        "ferramenta": "relatorio_incidente",
+        "sucesso": true,
+        "duracao_ms": 7952.4,
+        "tokens": 3564
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:27.359826",
+      "elapsed_ms": 66769,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "avaliar",
+        "etapa": 4,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:27.359995",
+      "elapsed_ms": 66769,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "perceber",
+        "etapa": 5,
+        "duracao_ms": 0.1
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:27.360056",
+      "elapsed_ms": 66769,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "planejar",
+        "etapa": 5,
+        "duracao_ms": 0.1
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:27.360067",
+      "elapsed_ms": 66769,
+      "trace_id": "6747d310bb69",
+      "tipo": "plano_gerado",
+      "dados": {
+        "proxima_acao": "FINALIZAR",
+        "nome_ferramenta": null,
+        "criterio_sucesso": "Diagnostico: [consultar_metricas] latencia_p99_ms=842.5, vazao_rps=9, taxa_erro=0.22, status=degradado | [buscar_logs] eventos=[{'timestamp': '2025-08-27T08:09:00Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Serviço iniciado com sucesso.', 'id': 'evt-1001'}, {'timestamp': '2025-08-27T08:15:23Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Carregamento de configuração concluído em 124ms.', 'id': 'evt-1002'}, {'timestamp': '2025-08-27T08:22:47Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Latência de resposta acima do limite: 320ms (limite 250ms).', 'id': 'evt-1003'}, {'timestamp': '2025-08-27T08:30:05Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Falha ao conectar ao banco de dados: timeout após 30s.', 'id': 'evt-1004'}, {'timestamp': '2025-08-27T08:38:12Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Reconexão ao banco de dados reestabelecida.', 'id': 'evt-1005'}, {'timestamp': '2025-08-27T08:45:33Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'nivel_minimo_sem_api_key', 'mensagem': 'Evento de nível mínimo registrado conforme configuração.', 'id': 'evt-1006'}, {'timestamp': '2025-08-27T08:52:01Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.', 'id': 'evt-1007'}, {'timestamp': '2025-08-27T09:00:19Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Uso de memória em 78% (limite de alerta 75%).', 'id': 'evt-1008'}, {'timestamp': '2025-08-27T09:08:44Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Backup incremental concluído em 4,3MB.', 'id': 'evt-1009'}, {'timestamp': '2025-08-27T09:15:02Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Exceção não tratada no módulo de autenticação: NullPointerException.', 'id': 'evt-1010'}, {'timestamp': '2025-08-27T09:22:30Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Módulo de autenticação reiniciado após falha.', 'id': 'evt-1011'}, {'timestamp': '2025-08-27T09:30:10Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Cache de sessões atingiu 85% de capacidade.', 'id': 'evt-1012'}], contagem_total=12 | [historico_deploys] deploys=[{'timestamp': '2025-09-15T09:12:00Z', 'versao': 'v2.3.1', 'autor': 'alice.silva', 'status': 'sucesso', 'duracao_minutos': 5}, {'timestamp': '2025-09-14T18:45:00Z', 'versao': 'v2.3.0', 'autor': 'brian.costa', 'status': 'sucesso', 'duracao_minutos': 7}, {'timestamp': '2025-09-14T02:30:00Z', 'versao': 'v2.2.9', 'autor': 'carla.mendes', 'status': 'falha', 'duracao_minutos': 4}, {'timestamp': '2025-09-13T11:05:00Z', 'versao': 'v2.2.8', 'autor': 'diego.ferraz', 'status': 'sucesso', 'duracao_minutos': 6}], contagem_total=4 | [relatorio_incidente] id_incidente=INC-20250916-0042, status=aberto"
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:27.360073",
+      "elapsed_ms": 66769,
+      "trace_id": "6747d310bb69",
+      "tipo": "fase_concluida",
+      "dados": {
+        "fase": "avaliar",
+        "etapa": 5,
+        "duracao_ms": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:27.360141",
+      "elapsed_ms": 66769,
+      "trace_id": "6747d310bb69",
+      "tipo": "finalizado",
+      "dados": {
+        "etapas": 5,
+        "resultado": "Diagnostico: [consultar_metricas] latencia_p99_ms=842.5, vazao_rps=9, taxa_erro=0.22, status=degradado | [buscar_logs] eventos=[{'timestamp': '2025-08-27T08:09:00Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Serviço iniciado com sucesso.', 'id': 'evt-1001'}, {'timestamp': '2025-08-27T08:15:23Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Carregamento de configuração concluído em 124ms.', 'id': 'evt-1002'}, {'timestamp': '2025-08-27T08:22:47Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Latência de resposta acima do limite: 320ms (limite 250ms).', 'id': 'evt-1003'}, {'timestamp': '2025-08-27T08:30:05Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Falha ao conectar ao banco de dados: timeout após 30s.', 'id': 'evt-1004'}, {'timestamp': '2025-08-27T08:38:12Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Reconexão ao banco de dados reestabelecida.', 'id': 'evt-1005'}, {'timestamp': '2025-08-27T08:45:33Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'nivel_minimo_sem_api_key', 'mensagem': 'Evento de nível mínimo registrado conforme configuração.', 'id': 'evt-1006'}, {'timestamp': '2025-08-27T08:52:01Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.', 'id': 'evt-1007'}, {'timestamp': '2025-08-27T09:00:19Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Uso de memória em 78% (limite de alerta 75%).', 'id': 'evt-1008'}, {'timestamp': '2025-08-27T09:08:44Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Backup incremental concluído em 4,3MB.', 'id': 'evt-1009'}, {'timestamp': '2025-08-27T09:15:02Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Exceção não tratada no módulo de autenticação: NullPointerException.', 'id': 'evt-1010'}, {'timestamp': '2025-08-27T09:22:30Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Módulo de autenticação reiniciado após falha.', 'id': 'evt-1011'}, {'timestamp': '2025-08-27T09:30:10Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Cache de sessões atingiu 85% de capacidade.', 'id': 'evt-1012'}], contagem_total=12 | [historico_deploys] deploys=[{'timestamp': '2025-09-15T09:12:00Z', 'versao': 'v2.3.1', 'autor': 'alice.silva', 'status': 'sucesso', 'duracao_minutos': 5}, {'timestamp': '2025-09-14T18:45:00Z', 'versao': 'v2.3.0', 'autor': 'brian.costa', 'status': 'sucesso', 'duracao_minutos': 7}, {'timestamp': '2025-09-14T02:30:00Z', 'versao': 'v2.2.9', 'autor': 'carla.mendes', 'status': 'falha', 'duracao_minutos': 4}, {'timestamp': '2025-09-13T11:05:00Z', 'versao': 'v2.2.8', 'autor': 'diego.ferraz', 'status': 'sucesso', 'duracao_minutos': 6}], contagem_total=4 | [relatorio_incidente] id_incidente=INC-20250916-0042, status=aberto",
+        "tokens_total": 6832
+      }
+    }
+  ],
+  "audit_logs": [
+    {
+      "timestamp": "2026-06-19T17:01:20.591378",
+      "elapsed_ms": 0,
+      "trace_id": "6747d310bb69",
+      "tipo": "plano_gerado",
+      "dados": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "consultar_metricas",
+        "criterio_sucesso": "consultar_metricas executado com sucesso"
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:37.579485",
+      "elapsed_ms": 16988,
+      "trace_id": "6747d310bb69",
+      "tipo": "ferramenta_executada",
+      "dados": {
+        "ferramenta": "consultar_metricas",
+        "sucesso": true,
+        "duracao_ms": 16988.1,
+        "tokens": 522
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:01:37.579699",
+      "elapsed_ms": 16989,
+      "trace_id": "6747d310bb69",
+      "tipo": "plano_gerado",
+      "dados": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "buscar_logs",
+        "criterio_sucesso": "buscar_logs executado com sucesso"
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:08.524356",
+      "elapsed_ms": 47933,
+      "trace_id": "6747d310bb69",
+      "tipo": "ferramenta_executada",
+      "dados": {
+        "ferramenta": "buscar_logs",
+        "sucesso": true,
+        "duracao_ms": 30944.6,
+        "tokens": 1768
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:08.524607",
+      "elapsed_ms": 47933,
+      "trace_id": "6747d310bb69",
+      "tipo": "plano_gerado",
+      "dados": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "historico_deploys",
+        "criterio_sucesso": "historico_deploys executado com sucesso"
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:19.406958",
+      "elapsed_ms": 58816,
+      "trace_id": "6747d310bb69",
+      "tipo": "ferramenta_executada",
+      "dados": {
+        "ferramenta": "historico_deploys",
+        "sucesso": true,
+        "duracao_ms": 10882.3,
+        "tokens": 978
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:19.407282",
+      "elapsed_ms": 58816,
+      "trace_id": "6747d310bb69",
+      "tipo": "plano_gerado",
+      "dados": {
+        "proxima_acao": "CHAMAR_FERRAMENTA",
+        "nome_ferramenta": "relatorio_incidente",
+        "criterio_sucesso": "relatorio_incidente executado com sucesso"
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:27.359714",
+      "elapsed_ms": 66769,
+      "trace_id": "6747d310bb69",
+      "tipo": "ferramenta_executada",
+      "dados": {
+        "ferramenta": "relatorio_incidente",
+        "sucesso": true,
+        "duracao_ms": 7952.4,
+        "tokens": 3564
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:27.360067",
+      "elapsed_ms": 66769,
+      "trace_id": "6747d310bb69",
+      "tipo": "plano_gerado",
+      "dados": {
+        "proxima_acao": "FINALIZAR",
+        "nome_ferramenta": null,
+        "criterio_sucesso": "Diagnostico: [consultar_metricas] latencia_p99_ms=842.5, vazao_rps=9, taxa_erro=0.22, status=degradado | [buscar_logs] eventos=[{'timestamp': '2025-08-27T08:09:00Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Serviço iniciado com sucesso.', 'id': 'evt-1001'}, {'timestamp': '2025-08-27T08:15:23Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Carregamento de configuração concluído em 124ms.', 'id': 'evt-1002'}, {'timestamp': '2025-08-27T08:22:47Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Latência de resposta acima do limite: 320ms (limite 250ms).', 'id': 'evt-1003'}, {'timestamp': '2025-08-27T08:30:05Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Falha ao conectar ao banco de dados: timeout após 30s.', 'id': 'evt-1004'}, {'timestamp': '2025-08-27T08:38:12Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Reconexão ao banco de dados reestabelecida.', 'id': 'evt-1005'}, {'timestamp': '2025-08-27T08:45:33Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'nivel_minimo_sem_api_key', 'mensagem': 'Evento de nível mínimo registrado conforme configuração.', 'id': 'evt-1006'}, {'timestamp': '2025-08-27T08:52:01Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.', 'id': 'evt-1007'}, {'timestamp': '2025-08-27T09:00:19Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Uso de memória em 78% (limite de alerta 75%).', 'id': 'evt-1008'}, {'timestamp': '2025-08-27T09:08:44Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Backup incremental concluído em 4,3MB.', 'id': 'evt-1009'}, {'timestamp': '2025-08-27T09:15:02Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Exceção não tratada no módulo de autenticação: NullPointerException.', 'id': 'evt-1010'}, {'timestamp': '2025-08-27T09:22:30Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Módulo de autenticação reiniciado após falha.', 'id': 'evt-1011'}, {'timestamp': '2025-08-27T09:30:10Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Cache de sessões atingiu 85% de capacidade.', 'id': 'evt-1012'}], contagem_total=12 | [historico_deploys] deploys=[{'timestamp': '2025-09-15T09:12:00Z', 'versao': 'v2.3.1', 'autor': 'alice.silva', 'status': 'sucesso', 'duracao_minutos': 5}, {'timestamp': '2025-09-14T18:45:00Z', 'versao': 'v2.3.0', 'autor': 'brian.costa', 'status': 'sucesso', 'duracao_minutos': 7}, {'timestamp': '2025-09-14T02:30:00Z', 'versao': 'v2.2.9', 'autor': 'carla.mendes', 'status': 'falha', 'duracao_minutos': 4}, {'timestamp': '2025-09-13T11:05:00Z', 'versao': 'v2.2.8', 'autor': 'diego.ferraz', 'status': 'sucesso', 'duracao_minutos': 6}], contagem_total=4 | [relatorio_incidente] id_incidente=INC-20250916-0042, status=aberto"
+      }
+    },
+    {
+      "timestamp": "2026-06-19T17:02:27.360141",
+      "elapsed_ms": 66769,
+      "trace_id": "6747d310bb69",
+      "tipo": "finalizado",
+      "dados": {
+        "etapas": 5,
+        "resultado": "Diagnostico: [consultar_metricas] latencia_p99_ms=842.5, vazao_rps=9, taxa_erro=0.22, status=degradado | [buscar_logs] eventos=[{'timestamp': '2025-08-27T08:09:00Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Serviço iniciado com sucesso.', 'id': 'evt-1001'}, {'timestamp': '2025-08-27T08:15:23Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Carregamento de configuração concluído em 124ms.', 'id': 'evt-1002'}, {'timestamp': '2025-08-27T08:22:47Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Latência de resposta acima do limite: 320ms (limite 250ms).', 'id': 'evt-1003'}, {'timestamp': '2025-08-27T08:30:05Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Falha ao conectar ao banco de dados: timeout após 30s.', 'id': 'evt-1004'}, {'timestamp': '2025-08-27T08:38:12Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Reconexão ao banco de dados reestabelecida.', 'id': 'evt-1005'}, {'timestamp': '2025-08-27T08:45:33Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'nivel_minimo_sem_api_key', 'mensagem': 'Evento de nível mínimo registrado conforme configuração.', 'id': 'evt-1006'}, {'timestamp': '2025-08-27T08:52:01Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Rotina de limpeza de logs executada, removidos 1.200 arquivos antigos.', 'id': 'evt-1007'}, {'timestamp': '2025-08-27T09:00:19Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'WARN', 'mensagem': 'Uso de memória em 78% (limite de alerta 75%).', 'id': 'evt-1008'}, {'timestamp': '2025-08-27T09:08:44Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Backup incremental concluído em 4,3MB.', 'id': 'evt-1009'}, {'timestamp': '2025-08-27T09:15:02Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'ERROR', 'mensagem': 'Exceção não tratada no módulo de autenticação: NullPointerException.', 'id': 'evt-1010'}, {'timestamp': '2025-08-27T09:22:30Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'INFO', 'mensagem': 'Módulo de autenticação reiniciado após falha.', 'id': 'evt-1011'}, {'timestamp': '2025-08-27T09:30:10Z', 'servico': 'nome_servico_sem_api_key', 'nivel': 'DEBUG', 'mensagem': 'Cache de sessões atingiu 85% de capacidade.', 'id': 'evt-1012'}], contagem_total=12 | [historico_deploys] deploys=[{'timestamp': '2025-09-15T09:12:00Z', 'versao': 'v2.3.1', 'autor': 'alice.silva', 'status': 'sucesso', 'duracao_minutos': 5}, {'timestamp': '2025-09-14T18:45:00Z', 'versao': 'v2.3.0', 'autor': 'brian.costa', 'status': 'sucesso', 'duracao_minutos': 7}, {'timestamp': '2025-09-14T02:30:00Z', 'versao': 'v2.2.9', 'autor': 'carla.mendes', 'status': 'falha', 'duracao_minutos': 4}, {'timestamp': '2025-09-13T11:05:00Z', 'versao': 'v2.2.8', 'autor': 'diego.ferraz', 'status': 'sucesso', 'duracao_minutos': 6}], contagem_total=4 | [relatorio_incidente] id_incidente=INC-20250916-0042, status=aberto",
+        "tokens_total": 6832
+      }
+    }
+  ],
+  "health_metrics": {
+    "trace_id": "6747d310bb69",
+    "taxa_sucesso_ferramentas": 100.0,
+    "ferramentas_sucesso": 4,
+    "ferramentas_falha": 0,
+    "circuit_breaker_ativacoes": 0,
+    "validacao_payload_falhas": 0,
+    "chamadas_llm": 9
+  },
+  "performance_data": {
+    "trace_id": "6747d310bb69",
+    "tempo_total_ms": 66769,
+    "tokens": {
+      "prompt": 4171,
+      "completion": 2661,
+      "total": 6832
+    },
+    "chamadas_llm": 9,
+    "fases": {
+      "perceber": {
+        "total_ms": 0.2,
+        "contagem": 5,
+        "max_ms": 0.1,
+        "media_ms": 0.0
+      },
+      "planejar": {
+        "total_ms": 0.1,
+        "contagem": 5,
+        "max_ms": 0.1,
+        "media_ms": 0.0
+      },
+      "validar_payload": {
+        "total_ms": 0.0,
+        "contagem": 4,
+        "max_ms": 0,
+        "media_ms": 0.0
+      },
+      "agir": {
+        "total_ms": 66767.4,
+        "contagem": 4,
+        "max_ms": 30944.6,
+        "media_ms": 16691.8
+      },
+      "avaliar": {
+        "total_ms": 0.0,
+        "contagem": 5,
+        "max_ms": 0,
+        "media_ms": 0.0
+      }
+    }
+  }
+}
