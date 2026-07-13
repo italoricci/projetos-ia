@@ -3,12 +3,15 @@ CLI do Runtime — ponto de entrada para rodar qualquer agente.
 
 Uso:
   python main.py rodar --agente ../monitor-agent --entrada "alerta de latencia"
-  python main.py rodar --agente ../monitor-agent --entrada "alerta" --modo interactive
-  python main.py rodar --agente ../monitor-agent --entrada "deploy falhou" --modo autonomous --evento deploy_falhou
+  python main.py rodar --agente ../monitor-agent --entrada "alerta" --arquitetura react
+  python main.py benchmark --agente ../monitor-agent --suite ../evals/suites/monitor-agent.yaml
+  python main.py benchmark --agente ../monitor-agent --suite ../evals/suites/monitor-agent.yaml --arquitetura react
+  python main.py comparar --agente ../monitor-agent --suite ../evals/suites/monitor-agent.yaml
   python main.py analisar --agente ../trace-analyzer
   python main.py validar --agente ../monitor-agent
   python main.py rastreamento
   python main.py replay --agente ../monitor-agent
+  python main.py memory-eval --agente ../monitor-agent --suite ../evals/suites/memory_impact_eval.yaml [--max-casos N]
 """
 
 import argparse
@@ -24,6 +27,8 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
 
 from ciclo import rodar, replay, exibir_rastreamento
 from validador import validar
+from benchmark import rodar_benchmark, gerar_relatorio_comparativo
+from tool_eval import rodar_tool_eval, gerar_relatorio_tool_eval
 
 
 def _resumir_trace(dados: dict) -> str:
@@ -250,6 +255,7 @@ def main():
     parser_rodar.add_argument("--entrada", required=True, help="Entrada do agente (ex: alerta de latencia)")
     parser_rodar.add_argument("--modo", required=False, help="Modo de operacao (task_based, interactive, goal_oriented, autonomous)")
     parser_rodar.add_argument("--evento", required=False, help="Evento trigger para modo autonomous (ex: alerta_cpu, deploy_falhou)")
+    parser_rodar.add_argument("--arquitetura", required=False, help="Arquitetura cognitiva (react, plan_execute, reflect)")
 
     # validar
     parser_validar = subparsers.add_parser("validar", help="Valida os contratos do agente")
@@ -267,6 +273,34 @@ def main():
     parser_replay = subparsers.add_parser("replay", help="Reexecuta com a mesma entrada da ultima execucao")
     parser_replay.add_argument("--agente", required=True, help="Caminho para a pasta do agente")
 
+    # benchmark
+    parser_bench = subparsers.add_parser("benchmark", help="Roda benchmark de uma arquitetura contra dataset de eval")
+    parser_bench.add_argument("--agente", required=True, help="Caminho para a pasta do agente")
+    parser_bench.add_argument("--suite", required=True, help="Caminho para a eval suite YAML")
+    parser_bench.add_argument("--arquitetura", required=False, help="Arquitetura cognitiva (react, plan_execute, reflect)")
+
+    # comparar
+    parser_comparar = subparsers.add_parser("comparar", help="Roda benchmark das 3 arquiteturas e gera relatorio comparativo")
+    parser_comparar.add_argument("--agente", required=True, help="Caminho para a pasta do agente")
+    parser_comparar.add_argument("--suite", required=True, help="Caminho para a eval suite YAML")
+
+    # tool-eval
+    parser_tool_eval = subparsers.add_parser("tool-eval", help="Avalia precisao de tool selection do agente")
+    parser_tool_eval.add_argument("--agente", required=True, help="Caminho para a pasta do agente")
+    parser_tool_eval.add_argument("--suite", required=True, help="Caminho para a eval suite de tool selection")
+    parser_tool_eval.add_argument("--arquitetura", required=False, help="Arquitetura cognitiva")
+
+    # tool-eval-comparar
+    parser_tool_cmp = subparsers.add_parser("tool-eval-comparar", help="Compara tool selection entre arquiteturas")
+    parser_tool_cmp.add_argument("--agente", required=True, help="Caminho para a pasta do agente")
+    parser_tool_cmp.add_argument("--suite", required=True, help="Caminho para a eval suite de tool selection")
+
+    # memory-eval
+    parser_memory_eval = subparsers.add_parser("memory-eval", help="Avalia impacto da memoria no agente")
+    parser_memory_eval.add_argument("--agente", required=True, help="Caminho para a pasta do agente")
+    parser_memory_eval.add_argument("--suite", required=True, help="Caminho para a eval suite de memory impact")
+    parser_memory_eval.add_argument("--max-casos", type=int, default=None, help="Limita ao N primeiros casos (default: todos)")
+
     argumentos = parser.parse_args()
 
     if argumentos.comando == "rodar":
@@ -275,6 +309,7 @@ def main():
             texto_entrada=argumentos.entrada,
             modo=argumentos.modo,
             evento=argumentos.evento,
+            arquitetura=getattr(argumentos, "arquitetura", None),
         )
     elif argumentos.comando == "validar":
         validar(caminho_agente=argumentos.agente)
@@ -305,6 +340,73 @@ def main():
             print(f"  Relatorio salvo: {caminho_md}")
     elif argumentos.comando == "replay":
         replay(caminho_agente=argumentos.agente)
+    elif argumentos.comando == "benchmark":
+        resultado = rodar_benchmark(
+            caminho_agente=argumentos.agente,
+            caminho_suite=argumentos.suite,
+            arquitetura=getattr(argumentos, "arquitetura", None),
+        )
+        # salvar resultado individual
+        nome_arq = getattr(argumentos, "arquitetura", None) or "padrao"
+        caminho_resultado = Path(__file__).parent.parent / "benchmarks" / f"bench_{nome_arq}.json"
+        caminho_resultado.parent.mkdir(parents=True, exist_ok=True)
+        caminho_resultado.write_text(json.dumps(resultado, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"  Resultado salvo: {caminho_resultado}")
+    elif argumentos.comando == "comparar":
+        caminho_benchmarks = Path(__file__).parent.parent / "benchmarks"
+        caminho_benchmarks.mkdir(parents=True, exist_ok=True)
+        arquiteturas = ["padrao", "react", "plan_execute", "reflect"]
+        todos_resultados = []
+        for arq in arquiteturas:
+            arq_param = arq if arq != "padrao" else None
+            print(f"\n{'#'*60}")
+            print(f"  BENCHMARK: {arq}")
+            print(f"{'#'*60}")
+            resultado = rodar_benchmark(
+                caminho_agente=argumentos.agente,
+                caminho_suite=argumentos.suite,
+                arquitetura=arq_param,
+            )
+            todos_resultados.append(resultado)
+            caminho_res = caminho_benchmarks / f"bench_{arq}.json"
+            caminho_res.write_text(json.dumps(resultado, indent=2, ensure_ascii=False), encoding="utf-8")
+        caminho_relatorio = str(caminho_benchmarks / "report.md")
+        gerar_relatorio_comparativo(todos_resultados, caminho_relatorio)
+    elif argumentos.comando == "tool-eval":
+        resultado = rodar_tool_eval(
+            caminho_agente=argumentos.agente,
+            caminho_suite=argumentos.suite,
+            arquitetura=getattr(argumentos, "arquitetura", None),
+        )
+        nome_arq = getattr(argumentos, "arquitetura", None) or "padrao"
+        caminho_res = Path(__file__).parent.parent / "evals" / "resultados" / f"tool_eval_{nome_arq}.json"
+        caminho_res.parent.mkdir(parents=True, exist_ok=True)
+        caminho_res.write_text(json.dumps(resultado, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"  Resultado salvo: {caminho_res}")
+    elif argumentos.comando == "tool-eval-comparar":
+        caminho_resultados = Path(__file__).parent.parent / "evals" / "resultados"
+        caminho_resultados.mkdir(parents=True, exist_ok=True)
+        arquiteturas = ["padrao", "react", "plan_execute", "reflect"]
+        todos = []
+        for arq in arquiteturas:
+            arq_param = arq if arq != "padrao" else None
+            resultado = rodar_tool_eval(
+                caminho_agente=argumentos.agente,
+                caminho_suite=argumentos.suite,
+                arquitetura=arq_param,
+            )
+            todos.append(resultado)
+            caminho_res = caminho_resultados / f"tool_eval_{arq}.json"
+            caminho_res.write_text(json.dumps(resultado, indent=2, ensure_ascii=False), encoding="utf-8")
+        caminho_relatorio = str(caminho_resultados / "tool_selection_report.md")
+        gerar_relatorio_tool_eval(todos, caminho_relatorio)
+    elif argumentos.comando == "memory-eval":
+        from memory_eval import executar_memory_eval
+        executar_memory_eval(
+            caminho_agente=argumentos.agente,
+            caminho_suite=argumentos.suite,
+            max_casos=getattr(argumentos, "max_casos", None),
+        )
     else:
         parser.print_help()
 

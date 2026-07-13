@@ -8,11 +8,11 @@
 
 ## Campos
 
-| Campo              | Tipo   | Descricao                                                                             |
-| ------------------ | ------ | ------------------------------------------------------------------------------------- |
-| `objetivo`         | string | O que o agente deve alcancar. Exibido no inicio da execucao e usado no prompt da LLM. |
-| `ciclo.max_etapas` | int    | Numero maximo de iteracoes do ciclo. Funciona como trava de seguranca.                |
-| `condicoes_parada` | lista  | Situacoes que encerram o ciclo. O runtime verifica essas condicoes a cada iteracao.   |
+| Campo | Tipo | Descricao |
+|-------|------|-----------|
+| `objetivo` | string | O que o agente deve alcancar. Exibido no inicio da execucao e usado no prompt da LLM. |
+| `ciclo.max_etapas` | int | Numero maximo de iteracoes do ciclo. Funciona como trava de seguranca. |
+| `condicoes_parada` | lista | Situacoes que encerram o ciclo. O runtime verifica essas condicoes a cada iteracao. |
 
 ---
 

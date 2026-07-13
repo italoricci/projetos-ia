@@ -1,28 +1,39 @@
-# ganchos.md
-
-> Permite observar e intervir.
-> Antes. Depois. Erro.
-
----
-
-## Campos
-
-| Campo                    | Tipo   | Descricao                                                                                                                      |
-| ------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `ganchos`                | objeto | Mapeamento de eventos do ciclo para acoes. O runtime dispara o gancho no momento correspondente.                               |
-| `ganchos.antes_da_etapa` | string | Disparado antes de cada etapa do ciclo. Util para log de progresso e checagem de budget.                                       |
-| `ganchos.apos_etapa`     | string | Disparado apos cada etapa do ciclo. Util para registrar resultado da etapa.                                                    |
-| `ganchos.antes_da_acao`  | string | Disparado antes de executar uma ferramenta. Valores possiveis: `log` (imprime no terminal) ou `alerta` (imprime com destaque). |
-| `ganchos.apos_acao`      | string | Disparado apos executar uma ferramenta com sucesso ou falha. Mesmos valores possiveis.                                         |
-| `ganchos.em_erro`        | string | Disparado quando a ferramenta retorna erro. Mesmos valores possiveis.                                                          |
-
----
-
 ```yaml
 ganchos:
   antes_da_etapa: log
   apos_etapa: log
-  antes_da_acao: log
-  apos_acao: log
-  em_erro: alerta
+
+  # Unidade 3: interceptacao de tool calls reais
+  antes_da_acao:
+    - log
+    - validar_rate_limit
+    - verificar_budget
+
+  apos_acao:
+    - log
+    - registrar_latencia
+    - registrar_custo
+
+  em_erro:
+    - alerta
+    - verificar_fallback_mock
+
+  # NOVO na Unidade 4: hooks de memoria
+  antes_de_recuperar_contexto:
+    - log
+    - verificar_cache_embedding
+
+  apos_recuperar_contexto:
+    - log
+    - registrar_fragmentos_recuperados
+    - verificar_relevancia_minima
+
+  antes_de_persistir_memoria:
+    - log
+    - validar_conteudo_contra_politicas
+    - verificar_duplicata
+
+  apos_persistir_memoria:
+    - log
+    - confirmar_gravacao
 ```

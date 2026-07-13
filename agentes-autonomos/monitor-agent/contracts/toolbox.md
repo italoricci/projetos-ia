@@ -8,10 +8,10 @@
 
 ## Campos
 
-| Campo                   | Tipo   | Descricao                                                                                                                                     |
-| ----------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ferramentas`           | lista  | Lista de ferramentas disponiveis para o agente.                                                                                               |
-| `ferramentas[].nome`    | string | Identificador unico da ferramenta. Deve ser o mesmo nome usado em `skills.md` e `rules.md`.                                                   |
+| Campo | Tipo | Descricao |
+|-------|------|-----------|
+| `ferramentas` | lista | Lista de ferramentas disponiveis para o agente. |
+| `ferramentas[].nome` | string | Identificador unico da ferramenta. Deve ser o mesmo nome usado em `skills.md` e `rules.md`. |
 | `ferramentas[].entrada` | objeto | Parametros que a ferramenta aceita. Cada chave e o nome do parametro e o valor e o tipo (`string`, `int`, `float`, `bool`, `list`, `object`). |
 
 > **Nota:** este contrato define apenas quais ferramentas existem e seus parametros.

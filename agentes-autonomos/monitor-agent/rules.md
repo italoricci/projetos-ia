@@ -1,48 +1,53 @@
-# regras.md
-
-> Protege o sistema.
-> Evita loop infinito.
-> Define comportamento seguro.
-
----
-
-## Campos
-
-| Campo                               | Tipo   | Descricao                                                                                                                                                                  |
-| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ferramentas_obrigatorias`          | lista  | Ferramentas que devem ser chamadas antes de permitir FINALIZAR. O runtime impede o encerramento enquanto alguma ferramenta desta lista nao tiver sido executada.           |
-| `limites.max_etapas`                | int    | Numero maximo de iteracoes do ciclo. Sobrescreve o valor do `loop.md` se ambos existirem.                                                                                  |
-| `limites.chamadas_ferramenta`       | objeto | Limites de chamadas por ferramenta. Cada chave e o nome da ferramenta e o valor e o maximo permitido.                                                                      |
-| `limites.chamadas_ferramenta.total` | int    | Limite total de chamadas somando todas as ferramentas.                                                                                                                     |
-| `politicas`                         | lista  | Regras de comportamento injetadas no prompt da LLM como texto. O runtime nao interpreta — apenas repassa. Servem para guiar a LLM sobre quando e como usar as ferramentas. |
-| `limites.sem_progresso`             | int    | Numero de etapas consecutivas sem progresso antes de encerrar. Detecta estagnacao quando o agente repete as mesmas ferramentas sem avancar.                                |
-| `limites.limite_tempo_segundos`     | int    | Tempo maximo de execucao em segundos. O ciclo encerra ao atingir esse limite.                                                                                              |
-| `acoes_sensiveis`                   | lista  | Ferramentas que requerem confirmacao humana antes de executar. O runtime pausa e pede confirmacao no terminal.                                                             |
-
----
-
 ```yaml
 ferramentas_obrigatorias:
   - relatorio_incidente
+  - buscar_issues
 
 limites:
-  max_etapas: 10
+  max_etapas: 12
   sem_progresso: 3
-  limite_tempo_segundos: 120
+  limite_tempo_segundos: 120 
   chamadas_ferramenta:
     consultar_metricas: 3
     buscar_logs: 3
+    buscar_logs_historico: 2
     historico_deploys: 2
+    buscar_issues: 1
     relatorio_incidente: 1
-    total: 9
+    total: 12
+
+  # Unidade 3: limites globais para tools reais
+  rate_limit_global:
+    chamadas_por_minuto: 60
+    custo_maximo_centavos: 50
 
 acoes_sensiveis:
   - rollback_deploy
 
 politicas:
   - parar se nao houver progresso apos 3 tentativas consecutivas
-  - relatorio_incidente e obrigatorio antes de finalizar
+  - relatorio_incidente e obrigatorio antes de finalizar. Se ela ainda nao aparece na lista de ferramentas ja utilizadas, voce NAO pode retornar proxima_acao=FINALIZAR; retorne CHAMAR_FERRAMENTA com nome_ferramenta=relatorio_incidente primeiro
+  - priorizar historico_deploys na primeira etapa SOMENTE SE a palavra 'deploy', 'release' ou 'rollout' aparecer literalmente na entrada do usuario. Caso contrario, comecar pelo fluxo normal (consultar_metricas). NAO inferir 'mudanca recente' de sinais indiretos como latencia ou erro
   - relatorio_incidente so pode ser chamado apos coletar evidencias
   - os argumentos evidencia e recomendacao do relatorio_incidente devem conter dados reais coletados
+  - buscar_issues e obrigatoria e deve ser chamada antes de relatorio_incidente para correlacionar o incidente com issues conhecidas
+  - buscar_issues deve usar repositorio igual ao nome_servico do alerta (ex repositorio=checkout) estado=open e labels=["bug","p1"]
   - rollback requer confirmacao humana
+  # Unidade 3: politicas de seguranca para tools reais
+  - tools com tipo_implementacao database devem usar modo read_only
+  - tools com tipo_implementacao rest devem ter timeout maximo de 30 segundos
+  - nunca logar conteudo de headers de autenticacao
+  - se uma tool real falhar 2 vezes seguidas, usar fallback mock e marcar no trace
+  - secrets so podem vir de variaveis de ambiente (.env)
+
+# NOVO na Unidade 4: politicas de memoria
+politicas_memoria:
+  - nunca gravar secrets, tokens ou senhas em nenhum tipo de memoria
+  - memoria longa so aceita fatos confirmados por evidencia de tool
+  - memoria episodica deve ser resumida, nunca trace completo
+  - embeddings devem ser regenerados se o modelo de embedding mudar
+  - licoes de reflection devem ser generalizaveis, nao especificas a um input
+  - se o agente recupera contextos contraditorios, deve perguntar ao usuario
+  - max tokens de contexto recuperado por execucao: 2000
+  - memorias com mais de 90 dias sem acesso podem ser arquivadas
 ```
