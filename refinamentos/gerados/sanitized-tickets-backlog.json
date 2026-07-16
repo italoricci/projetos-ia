@@ -1,0 +1,122 @@
+[
+  {
+    "ticket_id": "TKT-101",
+    "original_ref": "tkt_01",
+    "category": "BUG_CRITICO",
+    "severity": "ALTA",
+    "user_pain": "Tela branca ao fazer Pix e o app reinicia.",
+    "proposed_action": "Investigar crash no início do fluxo Pix; adicionar logs e testes de regressão com correlação por sessão."
+  },
+  {
+    "ticket_id": "TKT-102",
+    "original_ref": "tkt_05",
+    "category": "UX_UI_IMPROVEMENT",
+    "severity": "ALTA",
+    "user_pain": "Agendamento quebra ao selecionar um dia inexistente (mês curto).",
+    "proposed_action": "Validar calendário no front e no backend; bloquear datas inválidas e adicionar testes de borda (meses com 30/28 dias)."
+  },
+  {
+    "ticket_id": "TKT-103",
+    "original_ref": "tkt_06",
+    "category": "UX_UI_IMPROVEMENT",
+    "severity": "ALTA",
+    "user_pain": "Comprovante de transferência é difícil de encontrar e exige muitos cliques.",
+    "proposed_action": "Reduzir cliques no acesso ao comprovante; ajustar localização na UI pós-transação e tratar fallback quando não disponível."
+  },
+  {
+    "ticket_id": "TKT-104",
+    "original_ref": "tkt_07",
+    "category": "BUG_CRITICO",
+    "severity": "ALTA",
+    "user_pain": "TED parece não ser entregue (valor sumiu/não caiu na conta destino).",
+    "proposed_action": "Revisar idempotência e estados do backend de transferência; validar reconciliação e melhorar tratamento de status no front."
+  },
+  {
+    "ticket_id": "TKT-105",
+    "original_ref": "tkt_09",
+    "category": "BUG_CRITICO",
+    "severity": "ALTA",
+    "user_pain": "Erro 500 ao consultar extrato, com stacktrace visível no app.",
+    "proposed_action": "Corrigir endpoint de extrato e sanitizar mensagens de erro; implementar tratamento de falhas e logging seguro."
+  },
+  {
+    "ticket_id": "TKT-106",
+    "original_ref": "tkt_10",
+    "category": "UX_UI_IMPROVEMENT",
+    "severity": "ALTA",
+    "user_pain": "Cartão bloqueia sem motivo claro, dificultando o uso imediato.",
+    "proposed_action": "Melhorar comunicação do bloqueio (motivo/etapa); implementar rastreio e orientar desbloqueio com clareza."
+  },
+  {
+    "ticket_id": "TKT-107",
+    "original_ref": "tkt_12",
+    "category": "UX_UI_IMPROVEMENT",
+    "severity": "MEDIA",
+    "user_pain": "Atraso no atendimento no chat (usuário fica esperando muito tempo).",
+    "proposed_action": "Ajustar filas/SLAs e mensagens de progresso; adicionar estimativa de tempo e canal alternativo."
+  },
+  {
+    "ticket_id": "TKT-108",
+    "original_ref": "tkt_14",
+    "category": "UX_UI_IMPROVEMENT",
+    "severity": "ALTA",
+    "user_pain": "Link de redefinição de senha expira imediatamente.",
+    "proposed_action": "Revisar TTL e validação do link; permitir reenvio com cooldown e feedback explicando o motivo."
+  },
+  {
+    "ticket_id": "TKT-109",
+    "original_ref": "tkt_15",
+    "category": "BUG_CRITICO",
+    "severity": "ALTA",
+    "user_pain": "App fecha sozinho ao abrir a área de investimentos.",
+    "proposed_action": "Reproduzir crash no módulo de investimentos; usar crash reporting e controlar rollout até correção."
+  },
+  {
+    "ticket_id": "TKT-110",
+    "original_ref": "tkt_17",
+    "category": "NEW_FEATURE",
+    "severity": "MEDIA",
+    "user_pain": "Usuário quer estorno após transferir para chave errada.",
+    "proposed_action": "Avaliar possibilidade de reversão; se suportado, criar fluxo de solicitação de estorno, caso contrário comunicar limitações e próximos passos."
+  },
+  {
+    "ticket_id": "TKT-111",
+    "original_ref": "tkt_19",
+    "category": "BUG_CRITICO",
+    "severity": "ALTA",
+    "user_pain": "Saldo fica negativo sem explicação (variação inesperada).",
+    "proposed_action": "Investigar origem da movimentação e conciliação; melhorar visibilidade no extrato/estornos e explicar variações."
+  },
+  {
+    "ticket_id": "TKT-112",
+    "original_ref": "tkt_20",
+    "category": "BUG_CRITICO",
+    "severity": "ALTA",
+    "user_pain": "Selecionar 29/02 em ano não bissexto trava o app.",
+    "proposed_action": "Validar data no datepicker e no backend; corrigir parsing/cálculo do calendário e adicionar testes de borda."
+  },
+  {
+    "ticket_id": "TKT-113",
+    "original_ref": "tkt_21",
+    "category": "UX_UI_IMPROVEMENT",
+    "severity": "MEDIA",
+    "user_pain": "Usuário solicita encerramento de conta (fluxo precisa ser claro e confiável).",
+    "proposed_action": "Garantir fluxo transparente de cancelamento/encerramento com autenticação e checklist de passos."
+  },
+  {
+    "ticket_id": "TKT-114",
+    "original_ref": "tkt_24",
+    "category": "UX_UI_IMPROVEMENT",
+    "severity": "ALTA",
+    "user_pain": "Comprovante do Pix não aparece, fica carregando.",
+    "proposed_action": "Implementar retry/caching e tratar estados sem comprovante; orientar acesso alternativo ao comprovante."
+  },
+  {
+    "ticket_id": "TKT-115",
+    "original_ref": "tkt_26",
+    "category": "BUG_CRITICO",
+    "severity": "ALTA",
+    "user_pain": "Sessão expira instantaneamente após login.",
+    "proposed_action": "Revisar expiração/refresh tokens e sincronização; adicionar fallback de re-login e logs de autenticação."
+  }
+]

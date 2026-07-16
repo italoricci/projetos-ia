@@ -1,0 +1,132 @@
+[
+  {
+    "id": "tkt_01",
+    "author": "carlos.silva@email.com",
+    "text": "App lixo! Fui fazer um Pix e a tela ficou branca. Tive que fechar e abrir de novo. CPF: 123.456.789-00."
+  },
+  {
+    "id": "tkt_02",
+    "author": "dev_internal_test",
+    "text": "TESTE DE PRODUCAO - IGNORAR - ASDFGH"
+  },
+  {
+    "id": "tkt_03",
+    "author": "mariana_99",
+    "text": "Odeio o banco de vcs, o gerente Joao da agencia centro foi super grosso comigo hoje!!"
+  },
+  {
+    "id": "tkt_04",
+    "author": "bot_support",
+    "text": "[AUTO-REPLY] Seu ticket foi recebido e será respondido em 24h."
+  },
+  {
+    "id": "tkt_05",
+    "author": "lucas.dev",
+    "text": "Toda vez que tento agendar pro dia 31 num mês que tem 30 dias, o app crasha. Uso um iPhone 13."
+  },
+  {
+    "id": "tkt_06",
+    "author": "pedro_alves",
+    "text": "Gente, cade o comprovante de transferencia??? Antigamente ficava na cara, agora tenho que dar 3 cliques pra achar. Meu telefone é 11 99999-8888 me liguem."
+  },
+  {
+    "id": "tkt_07",
+    "author": "ana.souza",
+    "text": "Fiz um TED e o valor sumiu, não caiu na conta destino. Meu CPF é 987.654.321-00, verifiquem urgente."
+  },
+  {
+    "id": "tkt_08",
+    "author": "qa_bot",
+    "text": "[HEALTHCHECK] Endpoint /payments OK - latency 120ms"
+  },
+  {
+    "id": "tkt_09",
+    "author": "rodrigo_tech",
+    "text": "Erro 500 ao consultar extrato desde ontem à noite. Stacktrace aparecendo no app Android 12."
+  },
+  {
+    "id": "tkt_10",
+    "author": "juliana",
+    "text": "Meu cartão foi bloqueado sem motivo. Número final 4455. Preciso usar hoje!"
+  },
+  {
+    "id": "tkt_11",
+    "author": "internal_test_user",
+    "text": "DUMMY DATA - FAVOR DESCONSIDERAR - 123456"
+  },
+  {
+    "id": "tkt_12",
+    "author": "marcos_oliveira",
+    "text": "Atendimento péssimo! A atendente Carla me deixou esperando 40min no chat."
+  },
+  {
+    "id": "tkt_13",
+    "author": "bot_notifier",
+    "text": "[AUTO] Sua fatura fechou. Valor: R$ 2.345,67. Vencimento: 10/08."
+  },
+  {
+    "id": "tkt_14",
+    "author": "fernanda.r",
+    "text": "Não consigo redefinir minha senha, o link expira na hora. Email: fernanda.r@gmail.com"
+  },
+  {
+    "id": "tkt_15",
+    "author": "caique123",
+    "text": "App fecha sozinho quando clico em investimentos. Xiaomi Redmi Note 11."
+  },
+  {
+    "id": "tkt_16",
+    "author": "suporte_bot",
+    "text": "[AUTO-REPLY] Recebemos sua solicitação. Protocolo #889977."
+  },
+  {
+    "id": "tkt_17",
+    "author": "paulo_s",
+    "text": "Transferi pra chave errada, tem como estornar? Chave era um email antigo meu."
+  },
+  {
+    "id": "tkt_18",
+    "author": "devops_check",
+    "text": "PRODUCTION TEST - DO NOT PROCESS - ZXCVBN"
+  },
+  {
+    "id": "tkt_19",
+    "author": "aline_martins",
+    "text": "Meu saldo está negativo do nada. Agência 1234 conta 56789-0."
+  },
+  {
+    "id": "tkt_20",
+    "author": "gustavo.dev",
+    "text": "Bug: ao selecionar data 29/02 em ano não bissexto o app trava."
+  },
+  {
+    "id": "tkt_21",
+    "author": "cliente_001",
+    "text": "Quero encerrar minha conta. Meu telefone é (21) 98888-7777."
+  },
+  {
+    "id": "tkt_22",
+    "author": "bot_marketing",
+    "text": "[PROMO] Aproveite cashback de 10% hoje!"
+  },
+  {
+    "id": "tkt_23",
+    "author": "renata",
+    "text": "O gerente Pedro da agência 045 foi extremamente rude comigo."
+  },
+  {
+    "id": "tkt_24",
+    "author": "hugo.lima",
+    "text": "Não aparece comprovante de pagamento depois do Pix, só fica carregando."
+  },
+  {
+    "id": "tkt_25",
+    "author": "system_test",
+    "text": "IGNORE THIS MESSAGE - LOAD TEST - 999999"
+  },
+  {
+    "id": "tkt_26",
+    "author": "bruna_oliveira",
+    "text": "Fiz login e caiu direto, parece sessão expirada instantaneamente."
+  }
+]

@@ -1,0 +1,137 @@
+{
+  "AGENDAMENTO_LOADING_FAILED": {
+    "title": "Não foi possível carregar a tela",
+    "message": "Não conseguimos carregar contatos e regras do produto. Tente novamente e verifique sua conexão.",
+    "action_label": "Tentar novamente"
+  },
+  "CONTATOS_EMPTY": {
+    "title": "Sem contatos elegíveis",
+    "message": "Não há contatos disponíveis para Pix agendado no momento. Verifique sua lista e tente novamente.",
+    "action_label": "Ver contatos"
+  },
+  "CONTATO_INVALID_OR_INDISPONIVEL": {
+    "title": "Contato indisponível para Pix",
+    "message": "Não foi possível usar o contato selecionado. Selecione outro contato com Chave Pix válida.",
+    "action_label": "Escolher outro contato"
+  },
+  "VALOR_REQUIRED": {
+    "title": "Informe o valor do Pix",
+    "message": "O valor não pode ficar em branco. Preencha um valor válido para continuar.",
+    "action_label": "Preencher valor"
+  },
+  "VALOR_INVALID_ZERO_NEGATIVE": {
+    "title": "Valor inválido",
+    "message": "O valor informado não é aceito. Verifique se é maior que zero e no formato correto.",
+    "action_label": "Corrigir valor"
+  },
+  "VALOR_FORMAT_INVALID": {
+    "title": "Formato de valor não reconhecido",
+    "message": "Não reconhecemos o formato do valor. Ajuste o número e tente novamente.",
+    "action_label": "Ajustar valor"
+  },
+  "VALOR_EXCEDE_LIMITE_DIARIO": {
+    "title": "Acima do limite diário",
+    "message": "O valor excede o limite diário de R$ 5.000,00. Reduza o valor ou ajuste a data.",
+    "action_label": "Reduzir valor"
+  },
+  "DATA_REQUIRED": {
+    "title": "Informe a data do agendamento",
+    "message": "A data não pode ficar em branco. Selecione uma data permitida para continuar.",
+    "action_label": "Selecionar data"
+  },
+  "DATA_INVALID": {
+    "title": "Data inválida",
+    "message": "A data selecionada não é válida. Escolha outra data dentro das regras do agendamento.",
+    "action_label": "Selecionar outra data"
+  },
+  "DATA_PASSADA": {
+    "title": "Data passada não permitida",
+    "message": "Não é possível agendar para uma data já ocorrida. Selecione uma data futura.",
+    "action_label": "Escolher data futura"
+  },
+  "DATA_FORA_JANELA_PERMITIDA": {
+    "title": "Data fora da janela permitida",
+    "message": "A data escolhida está fora das regras de agendamento. Verifique as datas disponíveis.",
+    "action_label": "Ver datas disponíveis"
+  },
+  "MESMO_DIA_PIX_NORMAL_BLOQUEIO_INDEFINIDO": {
+    "title": "Fluxo de mesmo dia indisponível",
+    "message": "Não foi possível seguir com o agendamento para hoje. Tente novamente ou escolha outra data.",
+    "action_label": "Escolher outra data"
+  },
+  "BACKEND_OFFLINE_CREATING": {
+    "title": "Não foi possível confirmar",
+    "message": "Houve uma falha ao comunicar com o serviço. Verifique a conexão e tente novamente.",
+    "action_label": "Tentar novamente"
+  },
+  "DOUBLE_CLICK_GUARD": {
+    "title": "Confirmando agendamento",
+    "message": "Seu pedido está sendo processado. Aguarde alguns instantes para confirmar novamente.",
+    "action_label": "Aguarde"
+  },
+  "LIMIT_DIARIO_AGREGADO_EXCEEDED": {
+    "title": "Limite diário excedido",
+    "message": "O total do seu agendamento para a data ultrapassa o limite diário de R$ 5.000,00. Ajuste e tente de novo.",
+    "action_label": "Ajustar agendamento"
+  },
+  "FALTA_DE_SALDO": {
+    "title": "Saldo insuficiente",
+    "message": "Não há saldo suficiente para concluir o agendamento. Ajuste o valor ou revise seu saldo.",
+    "action_label": "Revisar saldo"
+  },
+  "CREATION_REJECTED": {
+    "title": "Agendamento não pôde ser criado",
+    "message": "O serviço recusou a criação do agendamento. Confirme os dados e tente novamente.",
+    "action_label": "Tentar novamente"
+  },
+  "CREATION_TIMEOUT": {
+    "title": "Tempo excedido ao criar",
+    "message": "A criação do agendamento demorou e não concluímos a resposta. Tente novamente ou verifique seus agendamentos.",
+    "action_label": "Ver agendamentos"
+  },
+  "CREATION_SUCCESS_WITH_PARTIAL_PROOF": {
+    "title": "Agendamento criado com aviso",
+    "message": "Conseguimos criar o agendamento, mas o comprovante pode estar incompleto. Verifique os detalhes.",
+    "action_label": "Ver comprovante"
+  },
+  "LISTAGEM_EMPTY_AGENDAMENTOS": {
+    "title": "Nenhum Pix agendado",
+    "message": "Não há Pix agendado disponível para cancelamento no momento. Faça um novo agendamento se precisar.",
+    "action_label": "Novo agendamento"
+  },
+  "CANCEL_LOADING_FAILED": {
+    "title": "Não foi possível cancelar",
+    "message": "Houve uma falha ao comunicar com o serviço. Verifique a conexão e tente novamente.",
+    "action_label": "Tentar novamente"
+  },
+  "CANCEL_NOT_ALLOWED_CONFLICT_STATUS": {
+    "title": "Cancelamento não disponível",
+    "message": "Esse agendamento não pode ser cancelado agora devido ao status atual. Verifique outros agendamentos.",
+    "action_label": "Ver agendamentos"
+  },
+  "CANCEL_ALREADY_PROCESSED_OR_CANCELLED": {
+    "title": "Agendamento já processado",
+    "message": "Não foi possível cancelar porque este agendamento já foi processado ou cancelado por outro canal.",
+    "action_label": "Ver detalhes"
+  },
+  "CANCEL_TIMEOUT": {
+    "title": "Tempo excedido ao cancelar",
+    "message": "A solicitação de cancelamento demorou. Verifique o status do agendamento e tente novamente se necessário.",
+    "action_label": "Ver status"
+  },
+  "CANCEL_REJECTED": {
+    "title": "Cancelamento não concluído",
+    "message": "O serviço não aceitou o cancelamento. Revise o status do agendamento e tente novamente.",
+    "action_label": "Tentar novamente"
+  },
+  "PROOF_SCREEN_NOT_FOUND_OR_NO_SESSION": {
+    "title": "Comprovante indisponível",
+    "message": "Não encontramos o agendamento para exibir o comprovante. Volte e selecione um agendamento existente.",
+    "action_label": "Voltar para agendamentos"
+  },
+  "PROOF_INCOMPLETE_DATA": {
+    "title": "Comprovante com informações parciais",
+    "message": "O comprovante pode não conter todos os dados. Verifique as informações disponíveis no detalhe do agendamento.",
+    "action_label": "Ver detalhes"
+  }
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "tkt_01",
+    "author": "user_1",
+    "text": "App lixo! Fui fazer um Pix e a tela ficou branca. Tive que fechar e abrir de novo. CPF: [REDACTED]."
+  },
+  {
+    "id": "tkt_03",
+    "author": "user_2",
+    "text": "Odeio o banco de vcs, o gerente [REDACTED] da agencia [REDACTED] foi super grosso comigo hoje!!"
+  },
+  {
+    "id": "tkt_05",
+    "author": "user_3",
+    "text": "Toda vez que tento agendar pro dia 31 num mês que tem 30 dias, o app crasha. Uso um iPhone 13."
+  },
+  {
+    "id": "tkt_06",
+    "author": "user_4",
+    "text": "Gente, cade o comprovante de transferencia??? Antigamente ficava na cara, agora tenho que dar 3 cliques pra achar. Meu telefone é [REDACTED] me liguem."
+  },
+  {
+    "id": "tkt_07",
+    "author": "user_5",
+    "text": "Fiz um TED e o valor sumiu, não caiu na conta destino. Meu CPF é [REDACTED], verifiquem urgente."
+  },
+  {
+    "id": "tkt_09",
+    "author": "user_6",
+    "text": "Erro 500 ao consultar extrato desde ontem à noite. Stacktrace aparecendo no app Android 12."
+  },
+  {
+    "id": "tkt_10",
+    "author": "user_7",
+    "text": "Meu cartão foi bloqueado sem motivo. Número final [REDACTED]. Preciso usar hoje!"
+  },
+  {
+    "id": "tkt_12",
+    "author": "user_8",
+    "text": "Atendimento péssimo! A atendente [REDACTED] me deixou esperando 40min no chat."
+  },
+  {
+    "id": "tkt_14",
+    "author": "user_9",
+    "text": "Não consigo redefinir minha senha, o link expira na hora. Email: [REDACTED]"
+  },
+  {
+    "id": "tkt_15",
+    "author": "user_10",
+    "text": "App fecha sozinho quando clico em investimentos. Xiaomi Redmi Note 11."
+  },
+  {
+    "id": "tkt_17",
+    "author": "user_11",
+    "text": "Transferi pra chave errada, tem como estornar? Chave era um email antigo meu."
+  },
+  {
+    "id": "tkt_19",
+    "author": "user_12",
+    "text": "Meu saldo está negativo do nada. Agência [REDACTED] conta [REDACTED]."
+  },
+  {
+    "id": "tkt_20",
+    "author": "user_13",
+    "text": "Bug: ao selecionar data 29/02 em ano não bissexto o app trava."
+  },
+  {
+    "id": "tkt_21",
+    "author": "user_14",
+    "text": "Quero encerrar minha conta. Meu telefone é [REDACTED]."
+  },
+  {
+    "id": "tkt_24",
+    "author": "user_15",
+    "text": "Não aparece comprovante de pagamento depois do Pix, só fica carregando."
+  },
+  {
+    "id": "tkt_26",
+    "author": "user_16",
+    "text": "Fiz login e caiu direto, parece sessão expirada instantaneamente."
+  }
+]
