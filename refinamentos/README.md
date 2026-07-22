@@ -1,8 +1,8 @@
-# Discovery & Refinement
+# Descoberta e Refinamentos
 
 ## Visão geral
 
-Este repositório implementa um pipeline de **Discovery & Refinement** para transformar requisitos brutos e feedbacks em artefatos acionáveis para engenharia e produto, usando LLMs.
+Este repositório implementa um pipeline de **Descoberta & Refinamentos** para transformar requisitos brutos e feedbacks em artefatos acionáveis para engenharia e produto, usando LLMs.
 
 O pipeline utiliza **LLMS** para:
 
