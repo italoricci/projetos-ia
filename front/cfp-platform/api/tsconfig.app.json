@@ -7,7 +7,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "target": "es2021",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "strictNullChecks": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,

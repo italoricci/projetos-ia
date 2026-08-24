@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "analytics": false,
+  "analytics": true,
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
@@ -11,7 +11,10 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/test-setup.[jt]s"
+      "!{projectRoot}/test-setup.[jt]s",
+      "!{projectRoot}/cypress/**/*",
+      "!{projectRoot}/**/*.cy.[jt]s?(x)",
+      "!{projectRoot}/cypress.config.[jt]s"
     ],
     "sharedGlobals": []
   },
@@ -25,11 +28,9 @@
       "cache": true,
       "inputs": [
         "default",
-        "^default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.mjs",
-        "{workspaceRoot}/tools/eslint-rules/**/*"
+        "{workspaceRoot}/eslint.config.mjs"
       ]
     },
     "@angular/build:unit-test": {
@@ -72,6 +73,15 @@
         "targetName": "test"
       },
       "exclude": ["api-e2e/**/*"]
+    },
+    {
+      "plugin": "@nx/cypress/plugin",
+      "options": {
+        "targetName": "e2e",
+        "openTargetName": "open-cypress",
+        "componentTestingTargetName": "component-test",
+        "ciTargetName": "e2e-ci"
+      }
     }
   ],
   "generators": {

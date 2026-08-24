@@ -4,7 +4,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -13,9 +13,9 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "strict": false,
+    "baseUrl": ".",
     "paths": {
-      "@cfp-platform/shared-types": ["./shared-types/src/index.ts"]
+      "@cfp-platform/shared-types": ["shared-types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
