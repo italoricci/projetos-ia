@@ -163,3 +163,8 @@ neo4j/neo4j/
 rag/import/
 rag/answers
 rag/rag/
+
+## python
+__pycache__/
+.venv/
+
