@@ -1,10 +1,10 @@
 # Framework Base de Agentes
-crewai==1.14.4
-crewai[tools]==1.14.4
+crewai==1.15.17
+crewai[tools]==1.15.17
 
 # LLM e Orquestração
 langchain-groq
-python-dotenv
+python-dotenv~=1.2.3
 
 # Interface Visual (Módulo 6)
 streamlit
@@ -18,3 +18,4 @@ pandas
 numpy
 
 litellm
+requests~=2.34.2

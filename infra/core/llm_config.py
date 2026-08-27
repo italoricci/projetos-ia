@@ -9,8 +9,8 @@ print(f"Chave carregada: {chave[:10]}..." if chave else "Chave NÃO encontrada!"
 
 # Centraliza a inteligência do projeto
 nexus_llm = LLM(
-    model="openrouter/nvidia/nemotron-3.5-lightning:free",
-     base_url="https://openrouter.ai/api/v1",
+    model="openrouter/nvidia/nemotron-3-super-120b-a12b:free",
+    base_url="https://openrouter.ai/api/v1",
     api_key=chave,
     temperature=0.2
 )
