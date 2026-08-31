@@ -1,14 +1,8 @@
-import os
-import sys
 import crewai
-import core.agents
-import tools.security_scan
-import tools.file_writer
 
-# Ensure project root is in the Python path
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if PROJECT_ROOT not in sys.path:
-    sys.path.insert(0, PROJECT_ROOT)
+import core.agents
+import tools.file_writer
+import tools.security_scan
 
 # Instantiate Agents with tools
 architect = core.agents.get_architect(tools=[tools.file_writer.write_file])

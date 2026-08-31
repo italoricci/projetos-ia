@@ -1,14 +1,9 @@
-import os
-import sys
 import crewai
+
+import core.agents
 import core.agents
 import tools.policy_rag
-
-
-# Ensure project root is in the Python path
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if PROJECT_ROOT not in sys.path:
-    sys.path.insert(0, PROJECT_ROOT)
+import tools.policy_rag
 
 # Instantiate the Cloud Architect agent with the compliance checking tool
 architect = core.agents.get_architect(tools=[tools.policy_rag.check_compliance_rules])
