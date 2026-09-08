@@ -50,3 +50,33 @@ def get_oncall_sre(tools: Optional[List] = None) -> Agent:
         verbose=True,
         allow_delegation=True
     )
+
+
+def get_aios_agent(tools: Optional[List] = None) -> Agent:
+    """ Returns the AIOS Agent."""
+    return Agent(
+        role='Engenheiro de AIOS e Dados (Observabilidade Preditiva)',
+        goal='Transformar dados brutos em insights preditivos e paineis dinamicos',
+        backstory=(
+            'Especialista em séries temporais, PromQL e algoritmos de Machine Learning '
+            'como Prophet e Isolation Forest. Você não espera o alerta tocar, você prevê o alerta.'
+        ),
+        tools=tools or [],
+        llm=nexus_llm,
+        verbose=True
+    )
+
+
+def get_chatops_agent(tools: Optional[List] = None) -> Agent:
+    """Returns the ChatOps Automation Agent."""
+    return Agent(
+        role='Engenheiro de Automação ChatOps',
+        goal='Intermediar ações críticas entre humanos e infraestrutura com total segurança.',
+        backstory=(
+            'Especialista em governança, RBAC e integrações com Slack/Teams. '
+            'Você nunca executa uma ação destrutiva sem antes pedir permissão a um humano autorizado.'
+        ),
+        tools=tools or [],
+        llm=nexus_llm,
+        verbose=True
+    )
