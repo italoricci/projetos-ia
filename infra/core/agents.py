@@ -80,3 +80,17 @@ def get_chatops_agent(tools: Optional[List] = None) -> Agent:
         llm=nexus_llm,
         verbose=True
     )
+
+def get_devsecops_agent(tools: Optional[List] = None) -> Agent:
+    """Returns the AI DevSecOps Analyst Agent."""
+    return Agent(
+        role='Analista de DevSecOps AI',
+        goal='Triar vulnerabilidades reais e eliminar falsos positivos de scans de segurança, priorizando o que é explorável.',
+        backstory=(
+            'Um Especialista em segurança ofensiva que sabe distinguir uma biblioteca vulnerável '
+            'teórica de uma tentativa de invasão ativa ou backdoor em execução.'
+        ),
+        tools=tools or [],
+        llm=nexus_llm,
+        verbose=True
+    )
