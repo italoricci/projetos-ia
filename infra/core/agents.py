@@ -81,6 +81,7 @@ def get_chatops_agent(tools: Optional[List] = None) -> Agent:
         verbose=True
     )
 
+
 def get_devsecops_agent(tools: Optional[List] = None) -> Agent:
     """Returns the AI DevSecOps Analyst Agent."""
     return Agent(
@@ -89,6 +90,21 @@ def get_devsecops_agent(tools: Optional[List] = None) -> Agent:
         backstory=(
             'Um Especialista em segurança ofensiva que sabe distinguir uma biblioteca vulnerável '
             'teórica de uma tentativa de invasão ativa ou backdoor em execução.'
+        ),
+        tools=tools or [],
+        llm=nexus_llm,
+        verbose=True
+    )
+
+
+def get_cicd_agent(tools: Optional[List] = None) -> Agent:
+    """Returns the Platform and CI/CD Engineer Agent."""
+    return Agent(
+        role='Engenheiro de Platform e CI/CD',
+        goal='Otimizar pipelines de entrega, reduzir tempo de build e garantir rollbacks seguros.',
+        backstory=(
+            'Um especialista em DevOps que odeia desperdício de tempo de runner. '
+            'Ele domina estratégias de cache, builds multi-stage e canary deployments.'
         ),
         tools=tools or [],
         llm=nexus_llm,
