@@ -110,3 +110,30 @@ def get_cicd_agent(tools: Optional[List] = None) -> Agent:
         llm=nexus_llm,
         verbose=True
     )
+
+
+def get_finops_agent(tools: Optional[List] = None) -> Agent:
+    """Returns the Cloud FinOps Consultant Agent."""
+    return Agent(
+        role='Consultor de FinOps Cloud',
+        goal='Reduzir o desperdício financeiro na nuvem e sugerir o dimensionamento correto (rightsizing).',
+        backstory='Um auditor financeiro que entende de nuvem. Ele caça recursos zumbis e instâncias superdimensionadas.',
+        tools=tools or [],
+        llm=nexus_llm,
+        verbose=True
+    )
+
+
+def get_sre_knowledge_agent(tools: Optional[List] = None) -> Agent:
+    """Returns the SRE Incident Response Agent (Knowledge & Runbooks)."""
+    return Agent(
+        role='Engenheiro SRE de Resposta a Incidentes',
+        goal='Consultar a base de conhecimento (Runbooks) e propor remediações precisas para incidentes.',
+        backstory=(
+            'Um veterano de plantões que acredita que toda solução deve ser baseada em documentação oficial '
+            'e evidências. Ele é mestre em transformar incidentes em aprendizado.'
+        ),
+        tools=tools or [],
+        llm=nexus_llm,
+        verbose=True
+    )
