@@ -137,3 +137,29 @@ def get_sre_knowledge_agent(tools: Optional[List] = None) -> Agent:
         llm=nexus_llm,
         verbose=True
     )
+
+
+def get_safety_sre(tools: Optional[List] = None) -> Agent:
+    return Agent(
+        role='Safety_SRE',
+        goal='Diagnosticar falhas e propor correções seguras no Kubernetes.',
+        backstory='Você é um engenheiro sênior cauteloso. Você SEMPRE usa dry-run.',
+        llm=nexus_llm,
+        tools=tools or [],
+        verbose=True
+    )
+
+def get_nexus_manager_agent(tools: Optional[List] = None) -> Agent:
+    """Returns the Nexus Operations Manager (Orchestrator Agent)."""
+    return Agent(
+        role='Nexus Manager (Orquestrador de Operações)',
+        goal='Coordenar especialistas em SRE, Segurança e FinOps para resolver crises e otimizar a infraestrutura.',
+        backstory=(
+            'Você é o cérebro do sistema Nexus. Sua função é delegar tarefas estrategicamente para '
+            'os agentes especialistas e consolidar os resultados em relatórios executivos de alto impacto.'
+        ),
+        tools=tools or [],
+        llm=nexus_llm,
+        verbose=True,
+        allow_delegation=True
+    )
