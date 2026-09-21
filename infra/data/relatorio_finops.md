@@ -4,7 +4,7 @@
 
 Identificar recursos órfãos e superdimensionados no inventário da conta `123456789012`, na região `us-east-1`, e estimar a economia mensal e anual potencial.
 
-**Fonte analisada:** `/home/italoricci/Documents/dev/pos/projetos-ia/infra/data/inventario_cloud.json`
+**Fonte analisada:** `/data/inventario_cloud.json`
 
 ## 2. Resumo executivo
 
