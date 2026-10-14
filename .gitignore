@@ -168,3 +168,6 @@ rag/rag/
 __pycache__/
 .venv/
 
+# Terraform local files
+infra/manifest/.terraform/
+infra/manifest/.terraform.lock.hcl
